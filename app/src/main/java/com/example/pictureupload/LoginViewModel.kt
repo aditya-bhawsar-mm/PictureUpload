@@ -1,10 +1,7 @@
 package com.example.pictureupload
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pictureupload.usecases.AuthUseCase
-import com.example.pictureupload.usecases.AuthUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -24,4 +21,11 @@ class LoginViewModel @Inject constructor(
     fun validateInput(params: AuthUseCase.Params): Boolean{
         TODO("Not yet implemented")
     }
+}
+
+sealed class LoginViewState{
+    class Loading(): LoginViewState()
+    class Error(val msg: String): LoginViewState()
+    class Success(): LoginViewState()
+    class Idle(): LoginViewState()
 }

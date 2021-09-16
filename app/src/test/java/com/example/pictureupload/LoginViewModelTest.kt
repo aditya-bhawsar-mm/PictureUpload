@@ -61,13 +61,13 @@ class LoginViewModelTest {
 
     @Test
     fun `checking what validate returns on input incorrect`(){
-        val user = "random@gmail.com"
-        val pass = "123456789"
+        val user = ""
+        val pass = ""
         val params = AuthUseCase.Params(user, pass)
 
         val validation = loginViewModel.validateInput(params)
 
-        assertEquals(true, validation)
+        assertEquals(false, validation)
     }
 
     @Test
