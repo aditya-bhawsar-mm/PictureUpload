@@ -11,8 +11,6 @@ interface AuthUseCase{
 
 class AuthUseCaseImpl: AuthUseCase {
 
-    override fun perform(params: AuthUseCase.Params) {
-
-    }
+    override fun perform(params: AuthUseCase.Params) {}
 
 }
