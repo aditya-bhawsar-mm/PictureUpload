@@ -9,21 +9,41 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    authUseCases: AuthUseCase
+    private val authUseCases: AuthUseCase
 ): ViewModel() {
 
     private val _viewState = MutableLiveData<LoginViewState>(LoginViewState.Idle)
     val viewState: LiveData<LoginViewState> get() = _viewState
 
-    fun resetViewState(){}
+    fun resetViewState(){ _viewState.value = LoginViewState.Idle }
 
-    fun validateInputAndLogIn(mail: String, pass: String){}
+    fun validateInputAndLogIn(mail: String, pass: String){
+        val params = AuthUseCase.Params(mail, pass)
+        val validInput = validateInput(params)
 
-    private fun validateInput(params: AuthUseCase.Params): Pair<Boolean, String>{
-        return Pair(false, "")
+        if(!validInput.first){
+            _viewState.value = LoginViewState.Error(validInput.second)
+            return
+        }
+
+        logInWithCredentials(params)
     }
 
-    private fun logInWithCredentials(param: AuthUseCase.Params){}
+    private fun validateInput(params: AuthUseCase.Params): Pair<Boolean, String>{
+        if(params.user.isEmpty() && params.pass.isEmpty())
+            return Pair(false, "Please enter valid email and password")
+        if(params.user.isEmpty())
+            return Pair(false, "Please enter a valid email")
+        if(params.pass.isEmpty())
+            return Pair(false, "Please enter a valid password")
+
+        return Pair(true,"")
+    }
+
+    private fun logInWithCredentials(params: AuthUseCase.Params){
+        _viewState.value = LoginViewState.Loading
+        authUseCases.perform(params)
+    }
 }
 
 sealed class LoginViewState{
