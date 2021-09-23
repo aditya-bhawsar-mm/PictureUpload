@@ -6,8 +6,10 @@ import com.example.pictureupload.usecases.AuthUseCaseImpl
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import io.mockk.coVerify
 import io.mockk.mockk
 import io.mockk.verify
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Assert.*
 
@@ -39,12 +41,11 @@ class LoginViewModelTest {
 
         loginViewModel.validateInputAndLogIn(user, pass)
 
-        verify { authUseCase.perform(params) }
+        verify { authUseCase.performSignIn(params) }
     }
 
     @Test
     fun `checking call to resetViewState makes changes to ViewState`(){
-
         loginViewModel.resetViewState()
         val state = loginViewModel.viewState.value
 
