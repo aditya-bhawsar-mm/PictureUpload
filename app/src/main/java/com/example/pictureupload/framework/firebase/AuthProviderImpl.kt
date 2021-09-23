@@ -1,4 +1,4 @@
-package com.example.pictureupload.framework
+package com.example.pictureupload.framework.firebase
 
 import com.example.pictureupload.data.AuthProvider
 import com.example.pictureupload.domain.AuthResult
