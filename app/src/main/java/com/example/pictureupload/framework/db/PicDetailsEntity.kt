@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "pic_tb")
-data class PicDetailsEntity(
+data class PicDetailsEntity (
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val path: String,
