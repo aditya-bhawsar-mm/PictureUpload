@@ -6,9 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
-class AuthProviderImpl(): AuthProvider {
-
-    private val auth by lazy { FirebaseAuth.getInstance() }
+class AuthProviderImpl(private val auth : FirebaseAuth): AuthProvider {
 
     override fun signInWithMailAndPassword(mail: String, password: String) = callbackFlow{
 
