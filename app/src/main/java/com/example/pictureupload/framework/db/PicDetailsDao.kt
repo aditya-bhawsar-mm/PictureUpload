@@ -5,13 +5,15 @@ import androidx.room.*
 @Dao
 interface PicDetailsDao {
 
+    //@Query("SELECT * FROM pic_tb")
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insetPicDetails(picDetailsEntity: PicDetailsEntity)
+    suspend fun insetPicDetails(picDetailsEntity: PicDetailsEntity)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updatePicDetails(picDetailsEntity: PicDetailsEntity)
+    suspend fun updatePicDetails(picDetailsEntity: PicDetailsEntity)
 
     @Delete
-    fun deletePicDetails(picDetailsEntity: PicDetailsEntity)
+    suspend fun deletePicDetails(picDetailsEntity: PicDetailsEntity)
 
 }
