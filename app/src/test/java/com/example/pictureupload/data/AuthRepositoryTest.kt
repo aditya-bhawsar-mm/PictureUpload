@@ -2,10 +2,8 @@ package com.example.pictureupload.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import io.mockk.mockk
-import io.mockk.mockkClass
 import io.mockk.verify
 import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -25,7 +23,7 @@ class AuthRepositoryTest {
     }
 
     @Test
-    fun `check the call from authRepo to authProvider`(){
+    fun `check the call from authRepo to authProvider`() {
         val user = "random@gmail.com"
         val pass = "123456789"
 

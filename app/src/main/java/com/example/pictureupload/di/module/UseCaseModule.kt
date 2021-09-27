@@ -18,5 +18,4 @@ object UseCaseModule {
     internal fun providesAuthUseCase(authRepo: AuthRepository): AuthUseCase {
         return AuthUseCaseImpl(authRepo)
     }
-
 }

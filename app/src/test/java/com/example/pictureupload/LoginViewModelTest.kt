@@ -2,22 +2,12 @@ package com.example.pictureupload
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.pictureupload.usecases.AuthUseCase
-import com.example.pictureupload.usecases.AuthUseCaseImpl
-import dagger.hilt.android.testing.BindValue
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import io.mockk.coVerify
 import io.mockk.mockk
 import io.mockk.verify
-import kotlinx.coroutines.runBlocking
-import org.junit.Assert
 import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import javax.inject.Inject
-import kotlin.math.log
 
 class LoginViewModelTest {
 
@@ -25,7 +15,7 @@ class LoginViewModelTest {
     val instantExecutorRule = InstantTaskExecutorRule()
 
     lateinit var authUseCase: AuthUseCase
-    lateinit var loginViewModel :LoginViewModel
+    lateinit var loginViewModel: LoginViewModel
 
     @Before
     fun setUp() {
@@ -34,7 +24,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `checking call to auth use case called`(){
+    fun `checking call to auth use case called`() {
         val user = "randomEmail@reddifmail.com"
         val pass = "123456789"
         val params = AuthUseCase.Params(user, pass)
@@ -45,7 +35,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `checking call to resetViewState makes changes to ViewState`(){
+    fun `checking call to resetViewState makes changes to ViewState`() {
         loginViewModel.resetViewState()
         val state = loginViewModel.viewState.value
 
@@ -56,7 +46,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `checking what viewState returns on empty password`(){
+    fun `checking what viewState returns on empty password`() {
         val user = "randomEmail@ymail.com"
         val pass = ""
 
@@ -70,7 +60,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `checking what viewState returns on empty mail`(){
+    fun `checking what viewState returns on empty mail`() {
         val user = ""
         val pass = "123456789"
 
@@ -84,7 +74,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `checking what viewState returns on empty input`(){
+    fun `checking what viewState returns on empty input`() {
         val user = ""
         val pass = ""
 
@@ -98,7 +88,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `checking what viewState returns on correct input`(){
+    fun `checking what viewState returns on correct input`() {
 
         val user = "random@gmail.com"
         val pass = "123456789"
