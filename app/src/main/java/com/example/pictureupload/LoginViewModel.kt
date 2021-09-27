@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pictureupload.usecases.AuthUseCase
-import com.example.pictureupload.usecases.AuthUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -14,14 +13,22 @@ class LoginViewModel @Inject constructor(
 ): ViewModel() {
 
     private fun logInWithCredentials(param: AuthUseCase.Params){
-        TODO("Not yet implemented")
+
     }
 
     fun validateInputAndLogIn(mail: String, pass: String){
-        TODO("Not yet implemented")
+
     }
 
     fun validateInput(params: AuthUseCase.Params): Boolean{
-        TODO("Not yet implemented")
+        //Not actual Implementation
+        return true
     }
+}
+
+sealed class LoginViewState{
+    object Loading: LoginViewState()
+    class Error(val msg: String): LoginViewState()
+    object Success: LoginViewState()
+    object Idle: LoginViewState()
 }

@@ -1,5 +1,6 @@
 package com.example.pictureupload
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.pictureupload.usecases.AuthUseCase
 import com.example.pictureupload.usecases.AuthUseCaseImpl
 import dagger.hilt.android.testing.BindValue
@@ -17,17 +18,20 @@ import kotlin.math.log
 
 class LoginViewModelTest {
 
+    @get:Rule
+    val instantExecutorRule = InstantTaskExecutorRule()
+
     lateinit var authUseCase: AuthUseCase
     lateinit var loginViewModel :LoginViewModel
 
     @Before
     fun setUp() {
-        authUseCase = mockk<AuthUseCase>()
+        authUseCase = mockk()
         loginViewModel = LoginViewModel(authUseCase)
     }
 
     @Test
-    fun `checking the call to auth use case called`(){
+    fun `checking call to auth use case called`(){
         val user = "randomEmail@gmail.com"
         val pass = "123456789"
         val params = AuthUseCase.Params(user, pass)
@@ -38,7 +42,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `checking what validate returns on input incorrect pass`(){
+    fun `checking what validate returns on empty password`(){
         val user = "randomEmail@gmail.com"
         val pass = ""
         val params = AuthUseCase.Params(user, pass)
@@ -49,7 +53,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `checking what validate returns on input incorrect mail`(){
+    fun `checking what validate returns on empty mail`(){
         val user = ""
         val pass = "123456789"
         val params = AuthUseCase.Params(user, pass)
@@ -60,18 +64,18 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `checking what validate returns on input incorrect`(){
-        val user = "random@gmail.com"
-        val pass = "123456789"
+    fun `checking what validate returns on empty input`(){
+        val user = ""
+        val pass = ""
         val params = AuthUseCase.Params(user, pass)
 
         val validation = loginViewModel.validateInput(params)
 
-        assertEquals(true, validation)
+        assertEquals(false, validation)
     }
 
     @Test
-    fun `checking what validate returns on input correct`(){
+    fun `checking what validate returns on correct input`(){
         val user = "random@gmail.com"
         val pass = "123456789"
         val params = AuthUseCase.Params(user, pass)
