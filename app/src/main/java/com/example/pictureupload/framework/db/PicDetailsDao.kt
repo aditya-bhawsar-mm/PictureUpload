@@ -5,8 +5,6 @@ import androidx.room.*
 @Dao
 interface PicDetailsDao {
 
-    //@Query("SELECT * FROM pic_tb")
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insetPicDetails(picDetailsEntity: PicDetailsEntity)
 

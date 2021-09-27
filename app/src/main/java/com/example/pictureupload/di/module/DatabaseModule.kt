@@ -3,7 +3,7 @@ package com.example.pictureupload.di.module
 import android.content.Context
 import androidx.room.Room
 import com.example.pictureupload.framework.db.PicDatabase
-import com.example.pictureupload.framework.db.PicDatabase.Companion.DB_NAME
+import com.example.pictureupload.util.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +19,7 @@ object DatabaseModule {
     @Singleton
     internal fun providesDatabase(@ApplicationContext ctx: Context): PicDatabase{
         return Room.databaseBuilder(
-            ctx, PicDatabase::class.java, DB_NAME
+            ctx, PicDatabase::class.java, Constants.DB_NAME
         ).build()
     }
 
