@@ -36,11 +36,13 @@ class LoginViewModel @Inject constructor(private val authUseCases: AuthUseCase):
     private fun logInWithCredentials(params: AuthUseCase.Params) {
         _viewState.value = LoginViewState.Loading
         viewModelScope.launch {
-            authUseCases.performSignIn(params).collect {
-                when(it){
-                    is AuthResult.Loading->{}
+            authUseCases.performSignIn(params).collect { authResult ->
+                when(authResult){
+                    is AuthResult.Loading->{
+                        _viewState.value  =LoginViewState.Loading
+                    }
                     is AuthResult.Failure->{
-                        _viewState.value = LoginViewState.Error(it.msg)
+                        _viewState.value = LoginViewState.Error(authResult.msg)
                     }
                     is AuthResult.Success->{
                         _viewState.value = LoginViewState.Success
