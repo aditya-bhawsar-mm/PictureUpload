@@ -14,7 +14,6 @@ import javax.inject.Singleton
 object UseCaseModule {
 
     @Provides
-    @Singleton
     internal fun providesAuthUseCase(authRepo: AuthRepository): AuthUseCase {
         return AuthUseCaseImpl(authRepo)
     }
