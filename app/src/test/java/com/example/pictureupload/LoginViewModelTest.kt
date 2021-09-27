@@ -27,7 +27,7 @@ class LoginViewModelTest {
 
     @Before
     fun setUp() {
-        authUseCase = mockk()
+        authUseCase = mockk(relaxed = true)
         loginViewModel = LoginViewModel(authUseCase)
     }
 
@@ -98,6 +98,7 @@ class LoginViewModelTest {
 
     @Test
     fun `checking what viewState returns on correct input`(){
+
         val user = "random@gmail.com"
         val pass = "123456789"
 
