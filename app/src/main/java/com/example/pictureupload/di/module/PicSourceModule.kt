@@ -13,6 +13,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object PicSourceModule {
 
+    //Provides Pic Source Implementation to the Repository
     @Provides
     @Singleton
     internal fun providesPicSource(picDetailsDao: PicDetailsDao): PicSource{

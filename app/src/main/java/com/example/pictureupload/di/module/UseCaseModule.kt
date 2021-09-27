@@ -12,8 +12,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object UseCaseModule {
 
+    //Provides Implementation of AuthUseCase for View Model
     @Provides
-    @Singleton
     internal fun providesAuthUseCase(): AuthUseCase {
         return AuthUseCaseImpl()
     }

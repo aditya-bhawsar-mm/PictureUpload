@@ -15,6 +15,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
+    //Provides the Database to the methods requiring it
     @Provides
     @Singleton
     internal fun providesDatabase(@ApplicationContext ctx: Context): PicDatabase{
@@ -23,6 +24,7 @@ object DatabaseModule {
         ).build()
     }
 
+    //Provides Dao object to the Source Implementation
     @Provides
     @Singleton
     internal fun providesPicDao(picDatabase: PicDatabase) = picDatabase.getPicDao()
