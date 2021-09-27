@@ -7,8 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.pictureupload.domain.AuthResult
 import com.example.pictureupload.usecases.AuthUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -39,7 +37,7 @@ class LoginViewModel @Inject constructor(private val authUseCases: AuthUseCase):
             authUseCases.performSignIn(params).collect { authResult ->
                 when(authResult){
                     is AuthResult.Loading->{
-                        _viewState.value  =LoginViewState.Loading
+                        _viewState.value = LoginViewState.Loading
                     }
                     is AuthResult.Failure->{
                         _viewState.value = LoginViewState.Error(authResult.msg)
