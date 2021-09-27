@@ -1,8 +1,7 @@
 package com.example.pictureupload.di.module
 
+import com.example.pictureupload.data.AuthProvider
 import com.example.pictureupload.data.AuthRepository
-import com.example.pictureupload.usecases.AuthUseCase
-import com.example.pictureupload.usecases.AuthUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,11 +10,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object UseCaseModule {
+object DataModule {
 
     @Provides
-    internal fun providesAuthUseCase(authRepo: AuthRepository): AuthUseCase {
-        return AuthUseCaseImpl(authRepo)
+    @Singleton
+    internal fun providesAuthRepo(authProvider: AuthProvider): AuthRepository {
+        return AuthRepository(authProvider)
     }
 
 }
