@@ -8,6 +8,7 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import io.mockk.mockk
 import io.mockk.verify
+import org.junit.Assert
 import org.junit.Assert.*
 
 import org.junit.Before
@@ -32,7 +33,7 @@ class LoginViewModelTest {
 
     @Test
     fun `checking call to auth use case called`(){
-        val user = "randomEmail@gmail.com"
+        val user = "randomEmail@reddifmail.com"
         val pass = "123456789"
         val params = AuthUseCase.Params(user, pass)
 
@@ -42,46 +43,70 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `checking what validate returns on empty password`(){
-        val user = "randomEmail@gmail.com"
-        val pass = ""
-        val params = AuthUseCase.Params(user, pass)
+    fun `checking call to resetViewState makes changes to ViewState`(){
 
-        val validation = loginViewModel.validateInput(params)
+        loginViewModel.resetViewState()
+        val state = loginViewModel.viewState.value
 
-        assertEquals(false, validation)
+        assertTrue(
+            "Current State after call to reset state is Idle",
+            state is LoginViewState.Idle
+        )
     }
 
     @Test
-    fun `checking what validate returns on empty mail`(){
+    fun `checking what viewState returns on empty password`(){
+        val user = "randomEmail@ymail.com"
+        val pass = ""
+
+        loginViewModel.validateInputAndLogIn(user, pass)
+        val state = loginViewModel.viewState.value
+
+        assertTrue(
+            "Empty password state change in vm",
+            state is LoginViewState.Error
+        )
+    }
+
+    @Test
+    fun `checking what viewState returns on empty mail`(){
         val user = ""
         val pass = "123456789"
-        val params = AuthUseCase.Params(user, pass)
 
-        val validation = loginViewModel.validateInput(params)
+        loginViewModel.validateInputAndLogIn(user, pass)
+        val state = loginViewModel.viewState.value
 
-        assertEquals(false, validation)
+        assertTrue(
+            "Empty mail state change in vm",
+            state is LoginViewState.Error
+        )
     }
 
     @Test
-    fun `checking what validate returns on empty input`(){
+    fun `checking what viewState returns on empty input`(){
         val user = ""
         val pass = ""
-        val params = AuthUseCase.Params(user, pass)
 
-        val validation = loginViewModel.validateInput(params)
+        loginViewModel.validateInputAndLogIn(user, pass)
+        val state = loginViewModel.viewState.value
 
-        assertEquals(false, validation)
+        assertTrue(
+            "Empty password and mail state change in vm",
+            state is LoginViewState.Error
+        )
     }
 
     @Test
-    fun `checking what validate returns on correct input`(){
+    fun `checking what viewState returns on correct input`(){
         val user = "random@gmail.com"
         val pass = "123456789"
-        val params = AuthUseCase.Params(user, pass)
 
-        val validation = loginViewModel.validateInput(params)
+        loginViewModel.validateInputAndLogIn(user, pass)
+        val state = loginViewModel.viewState.value
 
-        assertEquals(true, validation)
+        assertTrue(
+            "correct password and mail state change in vm",
+            state is LoginViewState.Loading
+        )
     }
 }

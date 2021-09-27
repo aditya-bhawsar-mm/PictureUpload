@@ -12,18 +12,18 @@ class LoginViewModel @Inject constructor(
     authUseCases: AuthUseCase
 ): ViewModel() {
 
-    private fun logInWithCredentials(param: AuthUseCase.Params){
+    private val _viewState = MutableLiveData<LoginViewState>(LoginViewState.Idle)
+    val viewState: LiveData<LoginViewState> get() = _viewState
 
+    fun resetViewState(){}
+
+    fun validateInputAndLogIn(mail: String, pass: String){}
+
+    private fun validateInput(params: AuthUseCase.Params): Pair<Boolean, String>{
+        return Pair(false, "")
     }
 
-    fun validateInputAndLogIn(mail: String, pass: String){
-
-    }
-
-    fun validateInput(params: AuthUseCase.Params): Boolean{
-        //Not actual Implementation
-        return true
-    }
+    private fun logInWithCredentials(param: AuthUseCase.Params){}
 }
 
 sealed class LoginViewState{
