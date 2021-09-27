@@ -19,25 +19,15 @@ class LoginViewModel @Inject constructor(
 
     fun validateInputAndLogIn(mail: String, pass: String){
         val params = AuthUseCase.Params(mail, pass)
-        val validInput = validateInput(params)
 
-        if(!validInput.first){
-            _viewState.value = LoginViewState.Error(validInput.second)
-            return
+        when(val validatedInput = ValidationChecker.validateAuthParams(params)){
+            is ValidationResult.Failed ->{
+                _viewState.value = LoginViewState.Error(validatedInput.msg)
+            }
+            is ValidationResult.Success ->{
+                logInWithCredentials(params)
+            }
         }
-
-        logInWithCredentials(params)
-    }
-
-    private fun validateInput(params: AuthUseCase.Params): Pair<Boolean, String>{
-        if(params.user.isEmpty() && params.pass.isEmpty())
-            return Pair(false, "Please enter valid email and password")
-        if(params.user.isEmpty())
-            return Pair(false, "Please enter a valid email")
-        if(params.pass.isEmpty())
-            return Pair(false, "Please enter a valid password")
-
-        return Pair(true,"")
     }
 
     private fun logInWithCredentials(params: AuthUseCase.Params){
