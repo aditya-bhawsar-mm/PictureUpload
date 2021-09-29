@@ -28,7 +28,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pictureupload.ui.theme.PictureUploadTheme
-import com.google.android.material.button.MaterialButton
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,17 +35,10 @@ class LoginActivity : ComponentActivity() {
         setContent {
             PictureUploadTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
+                LoginScreen()
             }
         }
     }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
 }
 
 @Composable
@@ -61,7 +53,8 @@ fun LoginScreen(){
             Image(painterResource(id = R.drawable.ic_launcher_background) , contentDescription = "App icon"
             ,modifier = Modifier
                     .fillMaxHeight()
-                    .fillMaxWidth().padding(25.dp)
+                    .fillMaxWidth()
+                    .padding(25.dp)
             )
 
         }
