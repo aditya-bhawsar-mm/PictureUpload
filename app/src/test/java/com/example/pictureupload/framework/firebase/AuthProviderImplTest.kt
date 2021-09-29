@@ -32,14 +32,27 @@ class AuthProviderImplTest {
     }
 
     @Test
-    fun `check flow returned from the method`() = coroutineDispatcher.runBlockingTest {
+    fun `check flow returned from the method for logIn`() = coroutineDispatcher.runBlockingTest {
         val user = "random@gmail.com"
         val pass = "123456789"
 
         val flow = authProviderImpl.signInWithMailAndPassword(user, pass).take(1).first()
 
         assertTrue(
-            "determining first value for the flow",
+            "determining first value for the flow logIn",
+            flow is AuthResult.Loading
+        )
+    }
+
+    @Test
+    fun `check flow returned from the method signUp`() = coroutineDispatcher.runBlockingTest{
+        val user = "random@gmail.com"
+        val pass = "123456789"
+
+        val flow = authProviderImpl.signUpWithMailAndPassword(user, pass).take(1).first()
+
+        assertTrue(
+            "determining first value for flow while signUp",
             flow is AuthResult.Loading
         )
     }

@@ -23,7 +23,7 @@ class AuthUseCaseImplTest {
     }
 
     @Test
-    fun `check call to authRepository from authUseCase`() {
+    fun `check call to authRepository from authUseCase while logIn`() {
         val user = "random@gmail.com"
         val pass = "123456789"
         val params = AuthUseCase.Params(user, pass)
@@ -31,5 +31,16 @@ class AuthUseCaseImplTest {
         authUseCaseImpl.performSignIn(params)
 
         verify { authRepository.signInWithPassword(user, pass) }
+    }
+
+    @Test
+    fun `check call to authRepository from authUseCase while signUp`(){
+        val user = "random@gmail.com"
+        val pass = "123456789"
+        val params = AuthUseCase.Params(user, pass)
+
+        authUseCaseImpl.performSignUp(params)
+
+        verify { authRepository.signUpWithPassword(user, pass) }
     }
 }
