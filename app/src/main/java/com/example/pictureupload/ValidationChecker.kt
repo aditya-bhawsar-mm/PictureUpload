@@ -4,7 +4,7 @@ import com.example.pictureupload.usecases.AuthUseCase
 
 object ValidationChecker {
 
-    fun validateAuthParams(params: AuthUseCase.Params): ValidationResult {
+    fun validateLoginAuthParams(params: AuthUseCase.Params): ValidationResult {
         if (params.user.isEmpty() && params.pass.isEmpty())
             return ValidationResult.Failed("Please enter valid email and password")
         if (params.user.isEmpty())
@@ -12,6 +12,10 @@ object ValidationChecker {
         if (params.pass.isEmpty())
             return ValidationResult.Failed("Please enter a valid password")
 
+        return ValidationResult.Success
+    }
+
+    fun validateRegisterAuthParams(): ValidationResult {
         return ValidationResult.Success
     }
 }
