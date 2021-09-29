@@ -34,10 +34,7 @@ class RegisterActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PictureUploadTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    RegisterScreen()
-                }
+                RegisterScreen()
             }
         }
     }
@@ -104,7 +101,7 @@ fun RegisterScreen(){
                             .fillMaxWidth()
                             .clip(shape = RoundedCornerShape(20.dp)),
                         onClick = {}) {
-                        Text(text = "Register", style = TextStyle(fontSize = 16.sp))
+                        Text(text = "Register", style = TextStyle(fontSize = 18.sp))
                     }
                 }
                 
