@@ -9,5 +9,6 @@ class AuthRepository(private val authProvider: AuthProvider) {
     fun signInWithPassword(mail: String, pass: String): Flow<AuthResult> =
         authProvider.signInWithMailAndPassword(mail, pass)
 
-    fun signUpWithPassword(mail: String, pass: String): Flow<AuthResult> = flowOf(AuthResult.Loading)
+    fun signUpWithPassword(mail: String, pass: String): Flow<AuthResult> =
+        authProvider.signUpWithMailAndPassword(mail, pass)
 }

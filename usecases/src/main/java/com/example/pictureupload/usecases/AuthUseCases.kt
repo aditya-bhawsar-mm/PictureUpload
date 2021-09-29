@@ -23,6 +23,6 @@ class AuthUseCaseImpl(private val authRepository: AuthRepository) : AuthUseCase 
     }
 
     override fun performSignUp(params: AuthUseCase.Params): Flow<AuthResult> {
-        return flowOf(AuthResult.Loading)
+        return authRepository.signUpWithPassword(params.user, params.pass)
     }
 }

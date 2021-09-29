@@ -22,7 +22,16 @@ class AuthProviderImpl(private val auth: FirebaseAuth) : AuthProvider {
         awaitClose {}
     }
 
-    override fun signUpWithMailAndPassword(mail: String, password: String): Flow<AuthResult> = callbackFlow{}
+    override fun signUpWithMailAndPassword(mail: String, password: String): Flow<AuthResult> = callbackFlow{
+
+        trySend(AuthResult.Loading)
+
+        auth.createUserWithEmailAndPassword(mail, password)
+            .addOnSuccessListener { trySend(AuthResult.Success) }
+            .addOnFailureListener { trySend(AuthResult.Failure(it.message ?: "Something Went Wrong")) }
+
+        awaitClose{}
+    }
 
 
 }
