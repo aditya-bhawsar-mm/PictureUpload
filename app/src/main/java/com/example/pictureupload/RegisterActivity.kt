@@ -74,14 +74,14 @@ fun RegisterScreen(){
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(10.dp),
-                        style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                        style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold)
                     )
 
                     OutlinedTextField(value = "", onValueChange = {},
                         label = { Text(text = "Email")},
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 4.dp)
+                            .padding(top = 10.dp, start = 16.dp, end = 16.dp, bottom = 4.dp)
                     )
                     OutlinedTextField(value = "", onValueChange = {},
                         label = { Text(text = "Password")},

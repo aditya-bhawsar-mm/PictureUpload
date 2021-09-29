@@ -73,7 +73,7 @@ fun LoginScreen(){
                     Text(text = "Login with Email", modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp), textAlign = TextAlign.Center,
-                    style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold))
+                    style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold))
 
                     OutlinedTextField(value = "", onValueChange = {},
                         label = { Text(text = "Email")},
