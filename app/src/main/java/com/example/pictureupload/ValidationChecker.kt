@@ -1,21 +1,28 @@
 package com.example.pictureupload
 
-import com.example.pictureupload.usecases.AuthUseCase
-
 object ValidationChecker {
 
-    fun validateLoginAuthParams(params: AuthUseCase.Params): ValidationResult {
-        if (params.user.isEmpty() && params.pass.isEmpty())
+    fun validateLoginAuthParams(mail: String, pass: String): ValidationResult {
+        if (mail.isEmpty() && pass.isEmpty())
             return ValidationResult.Failed("Please enter valid email and password")
-        if (params.user.isEmpty())
+        if (mail.isEmpty())
             return ValidationResult.Failed("Please enter a valid email")
-        if (params.pass.isEmpty())
+        if (pass.isEmpty())
             return ValidationResult.Failed("Please enter a valid password")
 
         return ValidationResult.Success
     }
 
-    fun validateRegisterAuthParams(): ValidationResult {
+    fun validateRegisterAuthParams(mail: String, passOrg: String, passConf: String): ValidationResult {
+        if(mail.isEmpty() && passConf.isEmpty() && passOrg.isEmpty())
+            return ValidationResult.Failed("Please enter a valid set of input")
+        if(mail.isEmpty())
+            return ValidationResult.Failed("Please enter a valid email")
+        if(passConf.isEmpty() || passOrg.isEmpty())
+            return ValidationResult.Failed("Please enter valid passwords")
+        if(passConf != passOrg)
+            return ValidationResult.Failed("Please enter same password to confirm")
+
         return ValidationResult.Success
     }
 }

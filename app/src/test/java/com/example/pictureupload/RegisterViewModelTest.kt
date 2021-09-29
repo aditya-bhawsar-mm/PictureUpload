@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 
@@ -36,7 +37,7 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun `checking the call to auth use case`() {
+    fun `checking the call to auth use case`() = coroutineDispatcher.runBlockingTest {
         val user = "randomEmail@reddifmail.com"
         val passOrg = "123456789"
         val passConf = "123456789"
@@ -52,7 +53,7 @@ class RegisterViewModelTest {
         registerViewModel.resetViewState()
         val state = registerViewModel.viewState.value
 
-        TestCase.assertTrue(
+        assertTrue(
             "Current State after call to reset state is Idle",
             state is RegisterViewState.Idle
         )
@@ -115,7 +116,7 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun `checking viewState returns on correct input`(){
+    fun `checking viewState returns on correct input`() = coroutineDispatcher.runBlockingTest{
         val mail= "random@gmail.com"
         val passOrg = "android@1"
         val passConf = "android@1"
