@@ -1,22 +1,20 @@
 package com.example.pictureupload.di.module
 
-import com.example.pictureupload.usecases.AuthUseCase
-import com.example.pictureupload.usecases.AuthUseCaseImpl
+import com.example.pictureupload.data.AuthProvider
+import com.example.pictureupload.data.AuthRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.mockk.mockk
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object UseCaseModule {
+object DataModule {
 
     @Provides
     @Singleton
-    fun provideAuthUseCase(): AuthUseCase {
-        return mockk(relaxed = true)
+    internal fun providesAuthRepo(authProvider: AuthProvider): AuthRepository {
+        return AuthRepository(authProvider)
     }
-
 }

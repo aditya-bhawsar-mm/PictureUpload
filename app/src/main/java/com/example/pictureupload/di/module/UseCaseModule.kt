@@ -1,5 +1,6 @@
 package com.example.pictureupload.di.module
 
+import com.example.pictureupload.data.AuthRepository
 import com.example.pictureupload.usecases.AuthUseCase
 import com.example.pictureupload.usecases.AuthUseCaseImpl
 import dagger.Module
@@ -14,8 +15,7 @@ object UseCaseModule {
 
     //Provides Implementation of AuthUseCase for View Model
     @Provides
-    internal fun providesAuthUseCase(): AuthUseCase {
-        return AuthUseCaseImpl()
+    internal fun providesAuthUseCase(authRepo: AuthRepository): AuthUseCase {
+        return AuthUseCaseImpl(authRepo)
     }
-
 }
