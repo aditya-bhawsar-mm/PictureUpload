@@ -2,7 +2,6 @@ package com.example.pictureupload
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -166,8 +165,8 @@ class LoginActivity : ComponentActivity() {
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                                 visualTransformation = if(passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
                                 trailingIcon = {
-                                    val image = if(passwordVisibility) Icons.Filled.Visibility
-                                    else Icons.Filled.VisibilityOff
+                                    val image = if(passwordVisibility) Icons.Filled.VisibilityOff
+                                    else Icons.Filled.Visibility
 
                                     IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
                                         Icon(imageVector  = image, "", tint = Color.Gray)

@@ -182,8 +182,8 @@ class RegisterActivity : ComponentActivity() {
                                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                                     trailingIcon = {
                                         val image = if (passwordVisibility)
-                                            Icons.Filled.Visibility
-                                        else Icons.Filled.VisibilityOff
+                                            Icons.Filled.VisibilityOff
+                                        else Icons.Filled.Visibility
 
                                         IconButton(onClick = {
                                             passwordVisibility= !passwordVisibility
@@ -206,8 +206,8 @@ class RegisterActivity : ComponentActivity() {
                                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                                     trailingIcon = {
                                         val image = if (passwordConfirmVisibility)
-                                            Icons.Filled.Visibility
-                                        else Icons.Filled.VisibilityOff
+                                            Icons.Filled.VisibilityOff
+                                        else Icons.Filled.Visibility
 
                                         IconButton(onClick = {
                                             passwordConfirmVisibility= !passwordConfirmVisibility
@@ -231,13 +231,11 @@ class RegisterActivity : ComponentActivity() {
                                     Text(text = "Register", style = TextStyle(fontSize = 18.sp))
                                 }
                             }
-
                         }
                     }
                 }
             }
         }
-
     }
 
     @Preview(showBackground = true)
