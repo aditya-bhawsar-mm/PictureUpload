@@ -31,5 +31,6 @@ class ListingActivity : ComponentActivity() {
     fun DefaultPreview() {
         ListingScreen()
     }
+
 }
 
