@@ -22,12 +22,22 @@ class AuthRepositoryTest {
     }
 
     @Test
-    fun `check the call from authRepo to authProvider`() {
+    fun `check the call from authRepo to authProvider for Login`() {
         val user = "random@gmail.com"
         val pass = "123456789"
 
         authRepository.signInWithPassword(user, pass)
 
         verify { authProvider.signInWithMailAndPassword(user, pass) }
+    }
+
+    @Test
+    fun `check the call from authRepo to authProvider for signUp`(){
+        val user = "android@gmail.com"
+        val pass = "1234567890"
+
+        authRepository.signUpWithPassword(user, pass)
+
+        verify { authProvider.signUpWithMailAndPassword(user, pass) }
     }
 }

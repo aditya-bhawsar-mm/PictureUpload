@@ -17,36 +17,30 @@ class LoginViewModel @Inject constructor(private val authUseCases: AuthUseCase) 
     private val _viewState = MutableLiveData<LoginViewState>(LoginViewState.Idle)
     val viewState: LiveData<LoginViewState> get() = _viewState
 
+    fun isUserLogged() = authUseCases.isUserLogged()
+
     fun resetViewState() { _viewState.value = LoginViewState.Idle }
 
     fun validateInputAndLogIn(mail: String, pass: String) {
-        val params = AuthUseCase.Params(mail, pass)
 
-        when (val validatedInput = ValidationChecker.validateAuthParams(params)) {
+        when (val validatedInput = ValidationChecker.validateLoginAuthParams(mail, pass)) {
             is ValidationResult.Failed -> {
-                _viewState.value = LoginViewState.Error(validatedInput.msg)
+                _viewState.value = LoginViewState.Error(msg = validatedInput.msg)
             }
             is ValidationResult.Success -> {
+                val params = AuthUseCase.Params(mail, pass)
                 logInWithCredentials(params)
             }
         }
     }
 
-    private fun logInWithCredentials(params: AuthUseCase.Params) {
+    private fun logInWithCredentials(params: AuthUseCase.Params) = viewModelScope.launch {
         _viewState.value = LoginViewState.Loading
-        viewModelScope.launch {
-            authUseCases.performSignIn(params).collect { authResult ->
-                when (authResult) {
-                    is AuthResult.Loading -> {
-                        _viewState.value = LoginViewState.Loading
-                    }
-                    is AuthResult.Failure -> {
-                        _viewState.value = LoginViewState.Error(authResult.msg)
-                    }
-                    is AuthResult.Success -> {
-                        _viewState.value = LoginViewState.Success
-                    }
-                }
+        authUseCases.performSignIn(params).collect { authResult ->
+            when (authResult) {
+                is AuthResult.Loading -> { _viewState.value = LoginViewState.Loading }
+                is AuthResult.Success -> { _viewState.value = LoginViewState.Success }
+                is AuthResult.Failure -> { _viewState.value = LoginViewState.Error(msg = authResult.msg) }
             }
         }
     }

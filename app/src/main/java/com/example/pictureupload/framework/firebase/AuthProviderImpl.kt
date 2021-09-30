@@ -11,6 +11,15 @@ import kotlinx.coroutines.flow.callbackFlow
 @ExperimentalCoroutinesApi
 class AuthProviderImpl(private val auth: FirebaseAuth) : AuthProvider {
 
+    override fun isUserLoggedIn(): Boolean {
+        return auth.currentUser != null
+    }
+
+    override fun getLoggedUserUID(): String? {
+        return if(isUserLoggedIn()) auth.currentUser!!.uid
+        else null
+    }
+
     override fun signInWithMailAndPassword(mail: String, password: String): Flow<AuthResult> = callbackFlow {
 
         trySend(AuthResult.Loading)
@@ -21,4 +30,19 @@ class AuthProviderImpl(private val auth: FirebaseAuth) : AuthProvider {
 
         awaitClose {}
     }
+
+
+
+    override fun signUpWithMailAndPassword(mail: String, password: String): Flow<AuthResult> = callbackFlow{
+
+        trySend(AuthResult.Loading)
+
+        auth.createUserWithEmailAndPassword(mail, password)
+            .addOnSuccessListener { trySend(AuthResult.Success) }
+            .addOnFailureListener { trySend(AuthResult.Failure(it.message ?: "Something Went Wrong")) }
+
+        awaitClose{}
+    }
+
+
 }
