@@ -232,6 +232,4 @@ class LoginActivity : ComponentActivity() {
     fun DefaultPreview() {
         LoginScreen()
     }
-
 }
-
