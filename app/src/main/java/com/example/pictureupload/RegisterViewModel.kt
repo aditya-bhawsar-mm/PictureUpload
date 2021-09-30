@@ -14,12 +14,16 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class RegisterViewModel @Inject constructor(private val authUseCase: AuthUseCase): ViewModel(){
 
-    private val _viewState =  MutableLiveData<RegisterViewState>(RegisterViewState.Loading)
+    private val _viewState =  MutableLiveData<RegisterViewState>(RegisterViewState.Idle)
     val viewState: LiveData<RegisterViewState> get() = _viewState
 
     fun resetViewState(){ _viewState.value = RegisterViewState.Idle }
 
     fun validateInputAndRegister(mail: String, passOrg: String, passConf:String){
+
+        println("Mail $mail")
+        println("Pass $passOrg")
+        println("PassConf $passConf")
 
         when(val validatedInput = ValidationChecker.validateRegisterAuthParams(mail, passOrg, passConf)){
             is ValidationResult.Failed -> {
@@ -48,5 +52,5 @@ sealed class RegisterViewState{
     object Idle: RegisterViewState()
     object Loading: RegisterViewState()
     object Success: RegisterViewState()
-    class Error(msg: String): RegisterViewState()
+    class Error(val msg: String): RegisterViewState()
 }

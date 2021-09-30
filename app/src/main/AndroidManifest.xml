@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pictureupload">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".BaseApp"
@@ -11,14 +14,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PictureUpload">
         <activity
+            android:name=".PictureActivity"
+            android:exported="true"
+            android:label="@string/title_activity_picture"
+            android:theme="@style/Theme.PictureUpload.NoActionBar" />
+        <activity
+            android:name=".ListingActivity"
+            android:exported="true"
+            android:label="@string/title_activity_listing"
+            android:theme="@style/Theme.PictureUpload.NoActionBar" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="true"
-            android:label="@string/title_activity_register"
-            android:theme="@style/Theme.PictureUpload.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.PictureUpload.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:label="@string/title_activity_login"
             android:theme="@style/Theme.PictureUpload.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
