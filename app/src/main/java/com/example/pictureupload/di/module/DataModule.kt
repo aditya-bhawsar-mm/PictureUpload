@@ -17,5 +17,4 @@ object DataModule {
     internal fun providesAuthRepo(authProvider: AuthProvider): AuthRepository {
         return AuthRepository(authProvider)
     }
-
 }

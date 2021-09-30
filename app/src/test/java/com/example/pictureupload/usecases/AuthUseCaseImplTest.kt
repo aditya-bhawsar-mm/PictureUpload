@@ -1,12 +1,9 @@
 package com.example.pictureupload.usecases
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.pictureupload.data.AuthProvider
 import com.example.pictureupload.data.AuthRepository
 import io.mockk.mockk
 import io.mockk.verify
-import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -26,14 +23,13 @@ class AuthUseCaseImplTest {
     }
 
     @Test
-    fun `check call to authRepository from authUseCase`(){
+    fun `check call to authRepository from authUseCase`() {
         val user = "random@gmail.com"
         val pass = "123456789"
-        val params = AuthUseCase.Params(user,pass)
+        val params = AuthUseCase.Params(user, pass)
 
         authUseCaseImpl.performSignIn(params)
 
         verify { authRepository.signInWithPassword(user, pass) }
     }
-
 }
