@@ -98,7 +98,7 @@ class RegisterActivity : ComponentActivity() {
                     if(alertDialog.isShowing){alertDialog.dismiss()}
                     Toast.makeText(
                         this,
-                        "Registered Successfully Please Login!!!",
+                        "Registered Successfully!!!",
                         Toast.LENGTH_LONG
                     ).show()
                     finish()
@@ -110,6 +110,7 @@ class RegisterActivity : ComponentActivity() {
                     alertDialog.setMessage(viewState.msg)
                     alertDialog.setIcon(R.mipmap.ic_launcher_round)
                     alertDialog.show()
+                    viewModel.resetViewState()
                 }
             }
         }
@@ -241,8 +242,8 @@ class RegisterActivity : ComponentActivity() {
 
     @Preview(showBackground = true)
     @Composable
-    fun DefaultPreview2() {
-                RegisterScreen()
+    fun DefaultPreview() {
+        RegisterScreen()
     }
 
 

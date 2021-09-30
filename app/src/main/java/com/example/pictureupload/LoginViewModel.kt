@@ -17,9 +17,12 @@ class LoginViewModel @Inject constructor(private val authUseCases: AuthUseCase) 
     private val _viewState = MutableLiveData<LoginViewState>(LoginViewState.Idle)
     val viewState: LiveData<LoginViewState> get() = _viewState
 
+    fun isUserLogged() = authUseCases.isUserLogged()
+
     fun resetViewState() { _viewState.value = LoginViewState.Idle }
 
     fun validateInputAndLogIn(mail: String, pass: String) {
+
         when (val validatedInput = ValidationChecker.validateLoginAuthParams(mail, pass)) {
             is ValidationResult.Failed -> {
                 _viewState.value = LoginViewState.Error(msg = validatedInput.msg)
