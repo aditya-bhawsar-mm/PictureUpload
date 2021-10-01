@@ -1,6 +1,7 @@
 package com.example.pictureupload.data
 
 import com.example.pictureupload.domain.PicDetails
+import kotlinx.coroutines.flow.Flow
 
 class PicDbRepository(private val picSource: PicSource) {
 
@@ -13,12 +14,11 @@ class PicDbRepository(private val picSource: PicSource) {
     suspend fun deletePicDetails(picDetails: PicDetails) =
         picSource.deletePic(picDetails)
 
-    suspend fun deleteAllPics() =
-        picSource.deleteAllPics()
+    suspend fun deleteAllPics() = picSource.deleteAllPics()
 
-    suspend fun getToUploadPics() =
+    suspend fun getToUploadPics(): List<PicDetails> =
         picSource.getToUploadPics()
 
-    fun getPicPresence(path: String) =
+    fun getPicPresence(path: String): Flow<Int> =
         picSource.getPicPresence(path)
 }
