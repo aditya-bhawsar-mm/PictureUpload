@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
@@ -54,9 +55,10 @@ class LoginActivity : ComponentActivity() {
 
     private val viewModel: LoginViewModel by viewModels()
 
-    lateinit var alertDialog: androidx.appcompat.app.AlertDialog
-    lateinit var scaffoldState: ScaffoldState
+    private lateinit var alertDialog: androidx.appcompat.app.AlertDialog
+    private lateinit var scaffoldState: ScaffoldState
 
+    @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -64,11 +66,13 @@ class LoginActivity : ComponentActivity() {
         }
     }
 
+    @ExperimentalMaterialApi
     override fun onStart() {
         super.onStart()
         checkUserLogin()
     }
 
+    @ExperimentalMaterialApi
     private fun checkUserLogin(){
         if(viewModel.isUserLogged()){
             val intent  = Intent(this, ListingActivity::class.java)
@@ -78,6 +82,7 @@ class LoginActivity : ComponentActivity() {
     }
 
     @Composable
+    @ExperimentalMaterialApi
     fun LoginScreen(){
         alertDialog = MaterialAlertDialogBuilder(this).create()
 
@@ -228,6 +233,7 @@ class LoginActivity : ComponentActivity() {
 
     @Preview(showBackground = true)
     @Composable
+    @ExperimentalMaterialApi
     fun DefaultPreview() {
         LoginScreen()
     }
