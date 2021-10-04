@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface StorageUseCase {
 
     fun createStorageRef(uid: String)
-    fun uploadFile(bytes: ByteArray): Flow<StorageResult>
+    suspend fun uploadFile(bytes: ByteArray): Flow<StorageResult>
 
 }
 
@@ -17,7 +17,7 @@ class StorageUseCaseImpl(private val storageRepo: StorageRepository): StorageUse
         storageRepo.createStorageRef(uid)
     }
 
-    override fun uploadFile(bytes: ByteArray): Flow<StorageResult> {
+    override suspend fun uploadFile(bytes: ByteArray): Flow<StorageResult> {
         return storageRepo.uploadFile(bytes)
     }
 
