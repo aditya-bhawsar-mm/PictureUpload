@@ -70,7 +70,7 @@ class PictureActivity : ComponentActivity() {
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Button(onClick = {}) {
+                Button(onClick = { /*TODO*/ }) {
                     Text(text = "Upload to Cloud")
                 }
             }
