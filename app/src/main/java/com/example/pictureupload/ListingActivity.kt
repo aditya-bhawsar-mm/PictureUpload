@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
@@ -48,7 +49,7 @@ class ListingActivity : ComponentActivity() {
         PictureUploadTheme {
             Column(
                 modifier = Modifier
-                    .background(color = colorResource(id = R.color.white))
+                    .background(color = Color.White)
                     .fillMaxSize()
                     .padding(5.dp)
             ) {

@@ -42,7 +42,7 @@ class PictureActivity : ComponentActivity() {
     fun PictureScreen(img: String){
         PictureUploadTheme {
             Column(modifier = Modifier
-                .background(color = colorResource(id = R.color.black))
+                .background(color = Color.Black)
                 .fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
