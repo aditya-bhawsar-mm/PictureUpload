@@ -1,6 +1,9 @@
 package com.example.pictureupload.di.module
 
 import com.example.pictureupload.data.AuthProvider
+import com.example.pictureupload.data.PicSource
+import com.example.pictureupload.framework.db.PicDetailsDao
+import com.example.pictureupload.framework.db.PicSourceImpl
 import com.example.pictureupload.framework.firebase.AuthProviderImpl
 import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
@@ -15,9 +18,18 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object FrameworkModule {
 
+    //Provides Auth Provider implementation to Repository
     @Provides
     @Singleton
     internal fun providesAuthProvider(): AuthProvider {
         return AuthProviderImpl(FirebaseAuth.getInstance())
     }
+
+    //Provides Pic Source Implementation to the Repository
+    @Provides
+    @Singleton
+    internal fun providesPicSource(picDetailsDao: PicDetailsDao): PicSource{
+        return PicSourceImpl(picDetailsDao)
+    }
+
 }

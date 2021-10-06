@@ -57,8 +57,8 @@ class LoginActivity : ComponentActivity() {
 
     private val viewModel: LoginViewModel by viewModels()
 
-    lateinit var alertDialog: androidx.appcompat.app.AlertDialog
-    lateinit var scaffoldState: ScaffoldState
+    private lateinit var alertDialog: androidx.appcompat.app.AlertDialog
+    private lateinit var scaffoldState: ScaffoldState
 
     @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,6 +85,7 @@ class LoginActivity : ComponentActivity() {
 
     @ExperimentalMaterialApi
     @Composable
+    @ExperimentalMaterialApi
     fun LoginScreen(){
         alertDialog = MaterialAlertDialogBuilder(this).create()
 
@@ -237,6 +238,7 @@ class LoginActivity : ComponentActivity() {
     @ExperimentalMaterialApi
     @Preview(showBackground = true)
     @Composable
+    @ExperimentalMaterialApi
     fun DefaultPreview() {
         LoginScreen()
     }

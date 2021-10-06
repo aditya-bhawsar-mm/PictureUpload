@@ -18,3 +18,9 @@ fun PicDetails.toEntity(): PicDetailsEntity{
         this.id, this.path, this.uploaded
     )
 }
+
+fun PicDetailsEntity.toDetails(): PicDetails{
+    return PicDetails(
+        this.id, this.path, this.uploaded
+    )
+}

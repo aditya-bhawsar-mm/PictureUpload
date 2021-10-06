@@ -105,7 +105,7 @@ class ListingActivity : ComponentActivity() {
                 intent.putExtra("img", "img/$image")
                 startActivity(intent)
             }
-        ){ Image(bitmap = bitmap, contentDescription = "",
+        ){ Image(bitmap = bitmap, contentDescription = "Image from assests",
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()) }
     }

@@ -2,6 +2,8 @@ package com.example.pictureupload.di.module
 
 import com.example.pictureupload.data.AuthProvider
 import com.example.pictureupload.data.AuthRepository
+import com.example.pictureupload.data.PicDbRepository
+import com.example.pictureupload.data.PicSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,5 +18,11 @@ object DataModule {
     @Singleton
     internal fun providesAuthRepo(authProvider: AuthProvider): AuthRepository {
         return AuthRepository(authProvider)
+    }
+
+    @Provides
+    @Singleton
+    internal fun providesPicRepos(picSource: PicSource): PicDbRepository{
+        return PicDbRepository(picSource)
     }
 }
