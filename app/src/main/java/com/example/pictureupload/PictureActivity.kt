@@ -81,7 +81,7 @@ class PictureActivity : ComponentActivity() {
             ) {
                 Button(onClick = {
                     viewModel.insertPicDetails(
-                        PicDetails(0,path,false)
+                        PicDetails(0,path,false), this@PictureActivity
                     )
                 }) {
                     Text(text = "Upload to Cloud")
