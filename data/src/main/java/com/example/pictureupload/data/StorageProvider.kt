@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 interface StorageProvider {
 
     fun createReferenceToUser(uid: String)
-    fun uploadFile(bytes: ByteArray): Flow<StorageResult>
+    suspend fun uploadFile(bytes: ByteArray): Flow<StorageResult>
 
 }
