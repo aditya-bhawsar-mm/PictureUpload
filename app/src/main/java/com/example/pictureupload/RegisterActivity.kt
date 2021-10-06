@@ -36,7 +36,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -47,10 +46,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.pictureupload.ui.theme.Grey
 import com.example.pictureupload.ui.theme.PictureUploadTheme
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.sin
 
 @AndroidEntryPoint
 class RegisterActivity : ComponentActivity() {
@@ -121,13 +120,13 @@ class RegisterActivity : ComponentActivity() {
                 scaffoldState = scaffoldState
             ) {
 
-                Column(modifier = Modifier.background(color = colorResource(id = R.color.white)))
+                Column(modifier = Modifier.background(color = Color.White))
                 {
                     Box(modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight(fraction = 0.4f)
                         .clip(shape = RoundedCornerShape(bottomEnd = 80.dp))
-                        .background(color = colorResource(id = R.color.white))
+                        .background(color = Color.White)
                     ) {
                         Image(
                             painterResource(id = R.drawable.ic_launcher_background) ,
@@ -142,13 +141,13 @@ class RegisterActivity : ComponentActivity() {
                     Box(modifier = Modifier
                         .fillMaxHeight()
                         .fillMaxWidth()
-                        .background(color = colorResource(id = R.color.white))) {
+                        .background(color = Color.White)) {
 
                         Box(modifier = Modifier
                             .fillMaxWidth()
                             .clip(shape = RoundedCornerShape(topStart = 80.dp))
                             .fillMaxHeight()
-                            .background(color = colorResource(id = R.color.grey))) {
+                            .background(color = Grey)) {
 
                             Column {
                                 Text(text = "Register with email", textAlign = TextAlign.Center,
