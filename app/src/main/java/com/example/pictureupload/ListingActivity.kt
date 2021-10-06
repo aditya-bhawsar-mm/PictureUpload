@@ -6,6 +6,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
@@ -33,14 +34,26 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.pictureupload.ui.theme.PictureUploadTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 @ExperimentalMaterialApi
 class ListingActivity : ComponentActivity() {
+
+    private val viewModel: ListingViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ListingScreen()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if(!viewModel.isUserLogged()){
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 
