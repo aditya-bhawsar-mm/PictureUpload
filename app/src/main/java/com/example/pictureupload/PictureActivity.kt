@@ -86,6 +86,7 @@ class PictureActivity : ComponentActivity() {
                 }) {
                     Text(text = "Upload to Cloud")
                 }
+
             }
         }
     }
