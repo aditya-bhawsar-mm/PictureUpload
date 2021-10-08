@@ -16,8 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.pictureupload.R
-import com.example.pictureupload.ui.screens.Screens
+import com.example.pictureupload.ui.screens.BottomNavItem
 
 @Composable
 fun BottomNavigationBar(modifier: Modifier = Modifier) {
@@ -25,10 +24,10 @@ fun BottomNavigationBar(modifier: Modifier = Modifier) {
   val iconSize by remember { mutableStateOf(60.dp) }
   val navBarSize by remember { mutableStateOf(iconSize + 20.dp) }
   val screens = listOf(
-    Screens.PhotosScreen,
-    Screens.SearchScreen,
-    Screens.SharingScreen,
-    Screens.LibraryScreen,
+    BottomNavItem.PhotosScreen,
+    BottomNavItem.SearchScreen,
+    BottomNavItem.SharingScreen,
+    BottomNavItem.LibraryScreen,
   )
 
   Scaffold(bottomBar = {
@@ -41,34 +40,8 @@ fun BottomNavigationBar(modifier: Modifier = Modifier) {
 
       screens.forEach { screen ->
         BottomNavigationItem(
-          icon = {
-            when (screen) {
-              Screens.PhotosScreen -> Icon(
-                painter = painterResource(id = R.drawable.ic_photo_selected), contentDescription = null, modifier =
-              modifier.height(iconSize)
-              )
-              Screens.SearchScreen -> Icon(
-                painter = painterResource(id = R.drawable.ic_search), contentDescription = null, modifier =
-              modifier.height(iconSize)
-              )
-              Screens.SharingScreen -> Icon(
-                painter = painterResource(id = R.drawable.ic_sharing), contentDescription = null, modifier =
-              modifier.height(iconSize)
-              )
-              Screens.LibraryScreen -> Icon(
-                painter = painterResource(id = R.drawable.ic_library), contentDescription = null, modifier =
-              modifier.height(iconSize)
-              )
-            }
-          },
-          label = {
-            when (screen) {
-              Screens.PhotosScreen -> Text(text = stringResource(R.string.bottomNavItemTitle_photos), style = MaterialTheme.typography.body1)
-              Screens.SearchScreen -> Text(text = stringResource(R.string.bottomNavItemTitle_search), style = MaterialTheme.typography.body1)
-              Screens.SharingScreen -> Text(text = stringResource(R.string.bottomNavItemTitle_sharing), style = MaterialTheme.typography.body1)
-              Screens.LibraryScreen -> Text(text = stringResource(R.string.bottomNavItemTitle_library), style = MaterialTheme.typography.body1)
-            }
-          },
+          icon = { Icon(painter = painterResource(id = screen.iconId), contentDescription = screen.route, modifier = modifier.height(iconSize)) },
+          label = { Text(text = stringResource(id = screen.label), style = MaterialTheme.typography.body1) },
           // selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
           // onClick = {
           //   navController.navigate(screen.route) {
