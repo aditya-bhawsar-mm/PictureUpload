@@ -1,4 +1,4 @@
-package com.example.pictureupload.ui.landing_screen
+package com.example.pictureupload.ui.screens.landing_screen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
