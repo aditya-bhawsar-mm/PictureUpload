@@ -3,25 +3,53 @@ package com.example.pictureupload.ui.screens.landing_screen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.core.view.WindowCompat
+import com.example.pictureupload.ui.screens.landing_screen.components.BottomNavigationBar
+import com.example.pictureupload.ui.theme.LandingScreenNavBarColor
 import com.example.pictureupload.ui.theme.PictureUploadTheme
+import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.navigationBarsPadding
+import com.google.accompanist.insets.statusBarsPadding
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class LandingScreenActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    WindowCompat.setDecorFitsSystemWindows(window, false)
     setContent {
       PictureUploadTheme {
-        Surface {
+        ProvideWindowInsets {
+          val systemUiController = rememberSystemUiController()
+          val useDarkIcons = MaterialTheme.colors.isLight
+
+          SideEffect {
+            systemUiController.setSystemBarsColor(
+              color = Color.Transparent,
+              darkIcons = useDarkIcons
+            )
+            systemUiController.setNavigationBarColor(
+              color = LandingScreenNavBarColor,
+              darkIcons = useDarkIcons
+            )
+          }
+
           Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            modifier = Modifier
+              .fillMaxSize()
+              .background(color = MaterialTheme.colors.surface)
+              .statusBarsPadding()
+              .navigationBarsPadding(),
+            contentAlignment = Alignment.Center,
           ) {
-            Text(text = "Landing Screen")
+            BottomNavigationBar()
           }
         }
       }
