@@ -10,10 +10,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
-import com.example.pictureupload.ui.screens.landing_screen.components.BottomNavigationBar
+import com.example.pictureupload.ui.screens.landing_screen.components.TopBar
 import com.example.pictureupload.ui.theme.LandingScreenNavBarColor
+import com.example.pictureupload.ui.theme.LandingScreenStatusBarColor
 import com.example.pictureupload.ui.theme.PictureUploadTheme
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
@@ -32,7 +32,7 @@ class LandingScreenActivity : ComponentActivity() {
 
           SideEffect {
             systemUiController.setSystemBarsColor(
-              color = Color.Transparent,
+              color = LandingScreenStatusBarColor,
               darkIcons = useDarkIcons
             )
             systemUiController.setNavigationBarColor(
@@ -49,7 +49,8 @@ class LandingScreenActivity : ComponentActivity() {
               .navigationBarsPadding(),
             contentAlignment = Alignment.Center,
           ) {
-            BottomNavigationBar()
+            // BottomNavigationBar()
+            TopBar()
           }
         }
       }

@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -24,7 +25,10 @@ import com.example.pictureupload.ui.navigation.BottomNavigationHost
 import com.example.pictureupload.ui.screens.BottomNavItem
 
 @Composable
-fun BottomNavigationBar(modifier: Modifier = Modifier) {
+fun BottomNavigationBar(
+  modifier: Modifier,
+  topBarHeight: Dp
+) {
   val navController = rememberNavController()
   val iconSize by remember { mutableStateOf(60.dp) }
   val navBarSize by remember { mutableStateOf(iconSize + 20.dp) }
@@ -58,12 +62,17 @@ fun BottomNavigationBar(modifier: Modifier = Modifier) {
             }
           },
           selectedContentColor = Color.White,
-          unselectedContentColor = Color.LightGray,
+          unselectedContentColor = Color.Gray,
           // alwaysShowLabel = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
         )
       }
     }
   }) { innerPadding ->
-    BottomNavigationHost(navController = navController, innerPadding = innerPadding)
+    BottomNavigationHost(
+      navController = navController,
+      innerPadding = innerPadding,
+      modifier = modifier,
+      topBarHeight = topBarHeight
+    )
   }
 }
