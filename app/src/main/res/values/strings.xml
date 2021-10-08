@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">Picture Upload</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_register">RegisterActivity</string>
-    <string name="title_activity_listing">ListingActivity</string>
-    <string name="title_activity_picture">PictureActivity</string>
+  <string name="app_name">Picture Upload</string>
+  <string name="title_activity_login">LoginActivity</string>
+  <string name="title_activity_register">RegisterActivity</string>
+  <string name="title_activity_listing">ListingActivity</string>
+  <string name="title_activity_picture">PictureActivity</string>
+  <string name="title_activity_landing_screen">LandingScreenActivity</string>
 </resources>
