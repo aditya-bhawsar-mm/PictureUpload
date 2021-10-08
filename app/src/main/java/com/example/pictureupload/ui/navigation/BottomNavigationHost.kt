@@ -7,17 +7,17 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.pictureupload.ui.screens.Screens
+import com.example.pictureupload.ui.screens.BottomNavItem
 
 @Composable
 fun BottomNavigationHost(
   navController: NavHostController,
   innerPadding: PaddingValues
 ) {
-  NavHost(navController = navController, startDestination = Screens.PhotosScreen.route, modifier = Modifier.padding(innerPadding)) {
-    composable(route = Screens.PhotosScreen.route) {}
-    composable(route = Screens.SearchScreen.route) {}
-    composable(route = Screens.SharingScreen.route) {}
-    composable(route = Screens.LibraryScreen.route) {}
+  NavHost(navController = navController, startDestination = BottomNavItem.PhotosScreen.route, modifier = Modifier.padding(innerPadding)) {
+    composable(route = BottomNavItem.PhotosScreen.route) {}
+    composable(route = BottomNavItem.SearchScreen.route) {}
+    composable(route = BottomNavItem.SharingScreen.route) {}
+    composable(route = BottomNavItem.LibraryScreen.route) {}
   }
 }
