@@ -85,7 +85,6 @@ class LoginActivity : ComponentActivity() {
 
     @ExperimentalMaterialApi
     @Composable
-    @ExperimentalMaterialApi
     fun LoginScreen(){
         alertDialog = MaterialAlertDialogBuilder(this).create()
 
@@ -238,7 +237,6 @@ class LoginActivity : ComponentActivity() {
     @ExperimentalMaterialApi
     @Preview(showBackground = true)
     @Composable
-    @ExperimentalMaterialApi
     fun DefaultPreview() {
         LoginScreen()
     }
