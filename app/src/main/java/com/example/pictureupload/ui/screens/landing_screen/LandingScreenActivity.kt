@@ -31,7 +31,7 @@ class LandingScreenActivity : ComponentActivity() {
           val useDarkIcons = MaterialTheme.colors.isLight
 
           SideEffect {
-            systemUiController.setSystemBarsColor(
+            systemUiController.setStatusBarColor(
               color = LandingScreenStatusBarColor,
               darkIcons = useDarkIcons
             )
@@ -50,7 +50,7 @@ class LandingScreenActivity : ComponentActivity() {
             contentAlignment = Alignment.Center,
           ) {
             // BottomNavigationBar()
-            TopBar()
+            TopBar(systemUiController = systemUiController)
           }
         }
       }

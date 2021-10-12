@@ -27,7 +27,8 @@ import com.example.pictureupload.ui.screens.BottomNavItem
 @Composable
 fun BottomNavigationBar(
   modifier: Modifier,
-  topBarHeight: Dp
+  topBarHeight: Dp,
+  changeTopBarColor: (changeColor: Boolean) -> Unit
 ) {
   val navController = rememberNavController()
   val iconSize by remember { mutableStateOf(60.dp) }
@@ -72,7 +73,8 @@ fun BottomNavigationBar(
       navController = navController,
       innerPadding = innerPadding,
       modifier = modifier,
-      topBarHeight = topBarHeight
+      topBarHeight = topBarHeight,
+      changeTopBarColor = changeTopBarColor
     )
   }
 }
