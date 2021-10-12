@@ -9,4 +9,8 @@
   <string name="bottomNavItemTitle_search">Search</string>
   <string name="bottomNavItemTitle_sharing">Sharing</string>
   <string name="bottomNavItemTitle_library">Library</string>
+  <string name="topBarStatusMsg_empty">Empty</string>
+  <string name="topBarStatusMsg_paused">Upload paused!</string>
+  <string name="topBarStatusMsg_disabled">Backup disabled!</string>
+  <string name="topBarStatusMsg_uploading">Photos are being backed up</string>
 </resources>
