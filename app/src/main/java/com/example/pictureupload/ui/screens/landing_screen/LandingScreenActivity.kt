@@ -15,6 +15,7 @@ import androidx.core.view.WindowCompat
 import com.example.pictureupload.ui.screens.landing_screen.components.BottomNavigationBar
 import com.example.pictureupload.ui.theme.LandingScreenNavBarColor
 import com.example.pictureupload.ui.theme.PictureUploadTheme
+import com.example.pictureupload.ui.theme.bottomNavBarColor
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
@@ -29,6 +30,7 @@ class LandingScreenActivity : ComponentActivity() {
         ProvideWindowInsets {
           val systemUiController = rememberSystemUiController()
           val useDarkIcons = MaterialTheme.colors.isLight
+          val navBarColor = MaterialTheme.colors.bottomNavBarColor
 
           SideEffect {
             systemUiController.setSystemBarsColor(
@@ -36,7 +38,7 @@ class LandingScreenActivity : ComponentActivity() {
               darkIcons = useDarkIcons
             )
             systemUiController.setNavigationBarColor(
-              color = LandingScreenNavBarColor,
+              color = navBarColor,
               darkIcons = useDarkIcons
             )
           }
