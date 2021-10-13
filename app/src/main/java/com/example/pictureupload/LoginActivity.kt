@@ -47,7 +47,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.pictureupload.ui.landing_screen.LandingScreenActivity
+import com.example.pictureupload.ui.screens.landing_screen.LandingScreenActivity
 import com.example.pictureupload.ui.theme.Grey
 import com.example.pictureupload.ui.theme.PictureUploadTheme
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
