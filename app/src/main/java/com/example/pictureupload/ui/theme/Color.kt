@@ -10,3 +10,7 @@ val Teal200 = Color(0xFF03DAC5)
 val White = Color(0xffffffff)
 val Black = Color(0xff000000)
 val Grey = Color(0x11000000)
+
+val Blue = Color(0xff004868)
+val LandingScreenNavBarColor = Color(0xFF5A5A5A)
+val LandingScreenStatusBarColor = Color(0xFF565656)

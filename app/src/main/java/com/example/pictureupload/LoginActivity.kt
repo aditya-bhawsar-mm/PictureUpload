@@ -47,6 +47,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.pictureupload.ui.screens.landing_screen.LandingScreenActivity
 import com.example.pictureupload.ui.theme.Grey
 import com.example.pictureupload.ui.theme.PictureUploadTheme
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -77,7 +78,7 @@ class LoginActivity : ComponentActivity() {
     @ExperimentalMaterialApi
     private fun checkUserLogin(){
         if(viewModel.isUserLogged()){
-            val intent  = Intent(this, ListingActivity::class.java)
+            val intent  = Intent(this, LandingScreenActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -85,7 +86,6 @@ class LoginActivity : ComponentActivity() {
 
     @ExperimentalMaterialApi
     @Composable
-    @ExperimentalMaterialApi
     fun LoginScreen(){
         alertDialog = MaterialAlertDialogBuilder(this).create()
 
@@ -238,7 +238,6 @@ class LoginActivity : ComponentActivity() {
     @ExperimentalMaterialApi
     @Preview(showBackground = true)
     @Composable
-    @ExperimentalMaterialApi
     fun DefaultPreview() {
         LoginScreen()
     }
