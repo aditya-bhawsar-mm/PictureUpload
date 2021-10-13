@@ -17,11 +17,14 @@ val Grey = Color(0x11000000)
 val BottomNavDarkSelect = Color(0xFF004A77)
 val BottomNavLightSelect = Color(0xFFC2E7FF)
 
-val BottomNavDarkIcon = Color(0xFFFFFFFF)
+val BottomNavDarkIcon = Color(0xFFC4C7C5)
 val BottomNavLightIcon = Color(0xFF001D35)
 
 val BottomNavBarDark = Color(0xFF2D2F33)
 val BottomNavBarLight = Color(0xFFF1F5FB)
+
+val SurfaceColorDark = Color(0xFF1f1f1f)
+val SurfaceColorLight = Color(0xFFFFFFFF)
 
 val Blue = Color(0xff004868)
 val LandingScreenNavBarColor = Color(0xFF5A5A5A)
@@ -37,3 +40,7 @@ val Colors.bottomNavIconColor: Color
 val Colors.bottomNavBarColor: Color
     @Composable
     get() = if(isLight) BottomNavBarLight else BottomNavBarDark
+
+val Colors.backgroundSurfaceColor: Color
+    @Composable
+    get() = if(isLight) SurfaceColorLight else SurfaceColorDark
