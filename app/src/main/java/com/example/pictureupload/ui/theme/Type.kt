@@ -18,11 +18,26 @@ val Typography = Typography(
     fontWeight = FontWeight.Bold,
     fontSize = 22.sp
   ),
-  body2 = TextStyle(
+  h6 = TextStyle(
     fontFamily = FontFamily.SansSerif,
     fontWeight = FontWeight.Normal,
     fontSize = 20.sp
-  )
+  ),
+  body2 = TextStyle(
+    fontFamily = FontFamily.SansSerif,
+    fontWeight = FontWeight.Normal,
+    fontSize = 14.sp
+  ),
+  subtitle1 = TextStyle(
+    fontFamily = FontFamily.SansSerif,
+    fontWeight = FontWeight.Bold,
+    fontSize = 12.sp
+  ),
+  subtitle2 = TextStyle(
+    fontFamily = FontFamily.SansSerif,
+    fontWeight = FontWeight.Normal,
+    fontSize = 12.sp
+  ),
   /* Other default text styles to override
   button = TextStyle(
       fontFamily = FontFamily.Default,
