@@ -8,4 +8,4 @@ fun Context.shortToast(msg: String) {
   Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 }
 
-fun LazyListState.isFirstItemVisible() = layoutInfo.visibleItemsInfo.firstOrNull()?.index == 0
+fun LazyListState.isFirstItemVisible() = firstVisibleItemIndex == 0

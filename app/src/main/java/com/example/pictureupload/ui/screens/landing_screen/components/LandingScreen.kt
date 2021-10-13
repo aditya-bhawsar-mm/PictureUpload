@@ -40,7 +40,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
 import com.example.pictureupload.ui.screens.landing_screen.LandingScreenViewModel
 import com.example.pictureupload.ui.screens.landing_screen.states.ImageUploadState
-import com.example.pictureupload.ui.theme.LandingScreenStatusBarColor
+import com.example.pictureupload.ui.theme.topBarBackgroundColor
 import com.google.accompanist.systemuicontroller.SystemUiController
 import kotlin.math.roundToInt
 
@@ -63,6 +63,8 @@ fun LandingScreen(
 
   var topBarColorState by remember { mutableStateOf(themeColors.surface) }
   val topBarColor by animateColorAsState(targetValue = topBarColorState, tween(durationMillis = 300))
+
+  val topBarBackgroundColor = themeColors.topBarBackgroundColor
 
   var topBarTitleSizeState by remember { mutableStateOf(themeTypography.h1.fontSize.value) }
   val topBarTitleSize by animateFloatAsState(targetValue = topBarTitleSizeState, tween(durationMillis = 300))
@@ -108,7 +110,7 @@ fun LandingScreen(
       modifier = modifier,
       topBarHeight = toolbarHeight,
       changeTopBarColor = { changeColor: Boolean ->
-        topBarColorState = if (changeColor) themeColors.surface else LandingScreenStatusBarColor
+        topBarColorState = if (changeColor) themeColors.surface else topBarBackgroundColor
         systemUiController.setStatusBarColor(color = topBarColor)
       }
     )
