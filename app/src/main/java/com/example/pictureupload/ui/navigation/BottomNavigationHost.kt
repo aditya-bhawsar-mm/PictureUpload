@@ -19,17 +19,18 @@ fun BottomNavigationHost(
   navController: NavHostController,
   innerPadding: PaddingValues,
   modifier: Modifier,
-  topBarHeight: Dp
+  topBarHeight: Dp,
+  changeTopBarColor: (changeColor: Boolean) -> Unit
 ) {
   NavHost(navController = navController, startDestination = BottomNavItem.PhotosScreen.route, modifier = modifier.padding(innerPadding)) {
     composable(route = BottomNavItem.PhotosScreen.route) {
-      PhotosScreen(topBarHeight = topBarHeight)
+      PhotosScreen(topBarHeight = topBarHeight, changeTopBarColor = changeTopBarColor)
     }
     composable(route = BottomNavItem.SearchScreen.route) {
       SearchScreen()
     }
     composable(route = BottomNavItem.SharingScreen.route) {
-      SharingScreen(topBarHeight = topBarHeight)
+      SharingScreen(topBarHeight = topBarHeight, changeTopBarColor = changeTopBarColor)
     }
     composable(route = BottomNavItem.LibraryScreen.route) {
       LibraryScreen()

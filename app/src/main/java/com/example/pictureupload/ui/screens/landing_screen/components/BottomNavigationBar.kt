@@ -27,7 +27,8 @@ import com.example.pictureupload.ui.screens.BottomNavItem
 @Composable
 fun BottomNavigationBar(
   modifier: Modifier,
-  topBarHeight: Dp
+  topBarHeight: Dp,
+  changeTopBarColor: (changeColor: Boolean) -> Unit
 ) {
   val navController = rememberNavController()
   val iconSize by remember { mutableStateOf(60.dp) }
@@ -50,7 +51,7 @@ fun BottomNavigationBar(
       screens.forEach { screen ->
         BottomNavigationItem(
           icon = { Icon(painter = painterResource(id = screen.iconId), contentDescription = screen.route, modifier = modifier.height(iconSize)) },
-          label = { Text(text = stringResource(id = screen.label), style = MaterialTheme.typography.body1) },
+          label = { Text(text = stringResource(id = screen.label), style = MaterialTheme.typography.body2) },
           selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
           onClick = {
             navController.navigate(screen.route) {
@@ -72,7 +73,8 @@ fun BottomNavigationBar(
       navController = navController,
       innerPadding = innerPadding,
       modifier = modifier,
-      topBarHeight = topBarHeight
+      topBarHeight = topBarHeight,
+      changeTopBarColor = changeTopBarColor
     )
   }
 }
