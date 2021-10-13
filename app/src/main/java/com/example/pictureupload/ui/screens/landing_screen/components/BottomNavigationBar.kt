@@ -51,7 +51,7 @@ fun BottomNavigationBar(
       screens.forEach { screen ->
         BottomNavigationItem(
           icon = { Icon(painter = painterResource(id = screen.iconId), contentDescription = screen.route, modifier = modifier.height(iconSize)) },
-          label = { Text(text = stringResource(id = screen.label), style = MaterialTheme.typography.body1) },
+          label = { Text(text = stringResource(id = screen.label), style = MaterialTheme.typography.body2) },
           selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
           onClick = {
             navController.navigate(screen.route) {
