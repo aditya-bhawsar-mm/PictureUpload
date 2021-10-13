@@ -1,5 +1,7 @@
 package com.example.pictureupload.ui.theme
 
+import androidx.compose.material.Colors
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 val Purple200 = Color(0xFFBB86FC)
@@ -11,6 +13,16 @@ val White = Color(0xffffffff)
 val Black = Color(0xff000000)
 val Grey = Color(0x11000000)
 
+val DarkModeSurfaceColor = Color(0xFF1F1F1F)
+val LightModeTextColor = Color(0xFF5F6267)
+
 val Blue = Color(0xff004868)
 val LandingScreenNavBarColor = Color(0xFF5A5A5A)
 val LandingScreenStatusBarColor = Color(0xFF565656)
+
+val TopAppBarBackgroundLight = Color(0xFFF1F4FB)
+val TopAppBarBackgroundDark = Color(0xFF2D2F32)
+
+val Colors.topBarBackgroundColor: Color
+  @Composable
+  get() = if (isLight) TopAppBarBackgroundLight else TopAppBarBackgroundDark
