@@ -17,6 +17,9 @@ class LandingScreenViewModel: ViewModel() {
     initImageState()
   }
 
+  /**
+   * The method initImageState and the imageState flows are just for testing purposes and will not be present in the final code
+   */
   private fun initImageState() {
     val listOfStates: List<ImageUploadState> = listOf(
       ImageUploadState.Empty,
