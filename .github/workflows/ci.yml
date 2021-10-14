@@ -34,10 +34,19 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Instrumentation Tests
-        uses: reactivecircus/android-emulator-runner@v1
+      - name: Test
+        uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 31
+          api-level: 23
+          target: default
+          arch: x86
+          profile: Nexus 6
+          script: ./gradlew connectedCheck --stacktrace
+
+      - name: Instrumentation Tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
           script: ./gradlew connectedAndroidTest
 
 
