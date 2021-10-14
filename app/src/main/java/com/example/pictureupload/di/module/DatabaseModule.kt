@@ -15,18 +15,17 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-    //Provides the Database to the methods requiring it
+    // Provides the Database to the methods requiring it
     @Provides
     @Singleton
-    internal fun providesDatabase(@ApplicationContext ctx: Context): PicDatabase{
+    internal fun providesDatabase(@ApplicationContext ctx: Context): PicDatabase {
         return Room.databaseBuilder(
             ctx, PicDatabase::class.java, Constants.DB_NAME
         ).build()
     }
 
-    //Provides Dao object to the Source Implementation
+    // Provides Dao object to the Source Implementation
     @Provides
     @Singleton
     internal fun providesPicDao(picDatabase: PicDatabase) = picDatabase.getPicDao()
-
 }

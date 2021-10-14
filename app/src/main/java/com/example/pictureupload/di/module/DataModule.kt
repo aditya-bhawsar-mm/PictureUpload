@@ -24,14 +24,13 @@ object DataModule {
 
     @Provides
     @Singleton
-    internal fun providesPicRepos(picSource: PicSource): PicDbRepository{
+    internal fun providesPicRepos(picSource: PicSource): PicDbRepository {
         return PicDbRepository(picSource)
     }
 
     @Provides
     @Singleton
-    internal fun providesStorageRepo(storageProvider: StorageProvider): StorageRepository{
+    internal fun providesStorageRepo(storageProvider: StorageProvider): StorageRepository {
         return StorageRepository(storageProvider)
     }
-
 }
