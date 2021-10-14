@@ -3,6 +3,7 @@ package com.example.pictureupload.ui.screens.landing_screen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,10 +11,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
-import com.example.pictureupload.ui.screens.landing_screen.components.BottomNavigationBar
+import coil.annotation.ExperimentalCoilApi
+import com.example.pictureupload.ui.screens.landing_screen.components.LandingScreen
 import com.example.pictureupload.ui.theme.LandingScreenNavBarColor
+import com.example.pictureupload.ui.theme.LandingScreenStatusBarColor
 import com.example.pictureupload.ui.theme.PictureUploadTheme
 import com.example.pictureupload.ui.theme.bottomNavBarColor
 import com.google.accompanist.insets.ProvideWindowInsets
@@ -22,6 +24,8 @@ import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class LandingScreenActivity : ComponentActivity() {
+  @ExperimentalAnimationApi
+  @ExperimentalCoilApi
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -33,8 +37,8 @@ class LandingScreenActivity : ComponentActivity() {
           val navBarColor = MaterialTheme.colors.bottomNavBarColor
 
           SideEffect {
-            systemUiController.setSystemBarsColor(
-              color = Color.Transparent,
+            systemUiController.setStatusBarColor(
+              color = LandingScreenStatusBarColor,
               darkIcons = useDarkIcons
             )
             systemUiController.setNavigationBarColor(
@@ -51,7 +55,8 @@ class LandingScreenActivity : ComponentActivity() {
               .navigationBarsPadding(),
             contentAlignment = Alignment.Center,
           ) {
-            BottomNavigationBar()
+            // BottomNavigationBar()
+            LandingScreen(systemUiController = systemUiController)
           }
         }
       }

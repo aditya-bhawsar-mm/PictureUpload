@@ -46,7 +46,11 @@ import com.example.pictureupload.ui.theme.bottomNavIconColor
 import com.example.pictureupload.ui.theme.bottomNavSelectedColor
 
 @Composable
-fun BottomNavigationBar(modifier: Modifier = Modifier) {
+fun BottomNavigationBar(
+  modifier: Modifier,
+  topBarHeight: Dp,
+  changeTopBarColor: (changeColor: Boolean) -> Unit
+) {
   val navController = rememberNavController()
 
   val screens = listOf(
@@ -92,7 +96,13 @@ fun BottomNavigationBar(modifier: Modifier = Modifier) {
       }
     }
   }) { innerPadding ->
-    BottomNavigationHost(navController = navController, innerPadding = innerPadding)
+    BottomNavigationHost(
+      navController = navController,
+      innerPadding = innerPadding,
+      modifier = modifier,
+      topBarHeight = topBarHeight,
+      changeTopBarColor = changeTopBarColor
+    )
   }
 }
 
