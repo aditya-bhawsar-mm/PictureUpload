@@ -116,11 +116,10 @@ dependencies {
     androidTestImplementation Libs.Espresso.espressoCore
 
     //Insetter for inset management
-    def accompanist_version = "0.19.0"
-    implementation "com.google.accompanist:accompanist-insets:$accompanist_version"
-    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
+    implementation Libs.Accompanist.uiController
+    implementation Libs.Accompanist.inset
 
     //Coil library for image loading
-    implementation("io.coil-kt:coil-compose:1.4.0")
+    implementation Libs.Coil.coil
 
 }

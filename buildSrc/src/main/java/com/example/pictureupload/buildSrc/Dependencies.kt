@@ -1,6 +1,8 @@
 package com.example.pictureupload.buildSrc
 
 object Versions {
+    const val accompanistVer = "0.19.0"
+    const val coilVer = "1.4.0"
     const val agpVersion = "7.0.2"
     const val hiltVersion = "2.36"
     const val hiltCompilerVersion = "1.0.0"
@@ -115,6 +117,15 @@ object Libs {
 
     object Espresso {
         const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoVer}"
+    }
+
+    object Accompanist {
+        const val inset = "com.google.accompanist:accompanist-insets:${Versions.accompanistVer}"
+        const val uiController = "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanistVer}"
+    }
+
+    object Coil {
+        const val coil = "io.coil-kt:coil-compose:${Versions.coilVer}"
     }
 
     object Compose {
