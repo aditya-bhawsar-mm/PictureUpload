@@ -15,12 +15,16 @@ data class PicDetailsEntity(
 
 fun PicDetails.toEntity(): PicDetailsEntity {
     return PicDetailsEntity(
-        this.id, this.path, this.uploaded
+        this.id,
+        this.path,
+        this.uploaded
     )
 }
 
 fun PicDetailsEntity.toDetails(): PicDetails {
     return PicDetails(
-        this.id, this.path, this.uploaded
+        this.id,
+        this.path,
+        this.uploaded
     )
 }
