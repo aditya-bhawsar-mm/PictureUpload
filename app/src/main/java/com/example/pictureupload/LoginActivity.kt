@@ -164,9 +164,11 @@ class LoginActivity : ComponentActivity() {
 
                         Column() {
                             Text(
-                                text = "Login with Email", modifier = Modifier
+                                text = "Login with Email",
+                                modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(10.dp), textAlign = TextAlign.Center,
+                                    .padding(10.dp),
+                                textAlign = TextAlign.Center,
                                 style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold)
                             )
 
@@ -192,9 +194,9 @@ class LoginActivity : ComponentActivity() {
                                     val image = if (passwordVisibility) Icons.Filled.VisibilityOff
                                     else Icons.Filled.Visibility
 
-                                    IconButton(onClick = {
-                                        passwordVisibility = !passwordVisibility
-                                    }) {
+                                    IconButton(
+                                        onClick = { passwordVisibility = !passwordVisibility }
+                                    ) {
                                         Icon(imageVector = image, "", tint = Color.Gray)
                                     }
                                 },
@@ -214,13 +216,16 @@ class LoginActivity : ComponentActivity() {
                                     .clip(shape = RoundedCornerShape(20.dp)),
                                 onClick = {
                                     viewModel.validateInputAndLogIn(emailState, passwordState)
-                                }) {
+                                }
+                            ) {
                                 Text(text = "Login", style = TextStyle(fontSize = 16.sp))
                             }
 
                             Text(
-                                text = "|OR|", modifier = Modifier
-                                    .fillMaxWidth(), textAlign = TextAlign.Center,
+                                text = "|OR|",
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                textAlign = TextAlign.Center,
                                 style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Black)
                             )
 
@@ -229,7 +234,8 @@ class LoginActivity : ComponentActivity() {
                                     .padding(12.dp)
                                     .fillMaxWidth()
                                     .clip(shape = RoundedCornerShape(20.dp)),
-                                onClick = {}) {
+                                onClick = {}
+                            ) {
                                 Text(
                                     text = "Login with Social",
                                     style = TextStyle(fontSize = 16.sp)
@@ -245,17 +251,15 @@ class LoginActivity : ComponentActivity() {
                                     val intent =
                                         Intent(this@LoginActivity, RegisterActivity::class.java)
                                     startActivity(intent)
-                                }) {
+                                }
+                            ) {
                                 Text(text = "Register", style = TextStyle(fontSize = 16.sp))
                             }
-
                         }
                     }
-
                 }
             }
         }
-
     }
 
     @ExperimentalMaterialApi
