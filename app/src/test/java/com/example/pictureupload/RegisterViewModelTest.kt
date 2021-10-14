@@ -4,7 +4,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.pictureupload.usecases.AuthUseCase
 import io.mockk.mockk
 import io.mockk.verify
-import junit.framework.TestCase
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -13,7 +12,6 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -60,8 +58,8 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun `checking viewState return on not matching Passwords`(){
-        val mail= "random@gmail.com"
+    fun `checking viewState return on not matching Passwords`() {
+        val mail = "random@gmail.com"
         val passOrg = "android@1"
         val passConf = "ios@12345"
 
@@ -74,8 +72,8 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun `checking viewState returns on empty Passwords`(){
-        val mail= "random@gmail.com"
+    fun `checking viewState returns on empty Passwords`() {
+        val mail = "random@gmail.com"
         val passOrg = ""
         val passConf = ""
 
@@ -88,8 +86,8 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun `checking viewState returns on empty Email`(){
-        val mail= ""
+    fun `checking viewState returns on empty Email`() {
+        val mail = ""
         val passOrg = "android@1"
         val passConf = "android@1"
 
@@ -102,8 +100,8 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun `checking viewState returns on empty input`(){
-        val mail= ""
+    fun `checking viewState returns on empty input`() {
+        val mail = ""
         val passOrg = ""
         val passConf = ""
 
@@ -116,8 +114,8 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun `checking viewState returns on correct input`() = coroutineDispatcher.runBlockingTest{
-        val mail= "random@gmail.com"
+    fun `checking viewState returns on correct input`() = coroutineDispatcher.runBlockingTest {
+        val mail = "random@gmail.com"
         val passOrg = "android@1"
         val passConf = "android@1"
 
@@ -130,7 +128,7 @@ class RegisterViewModelTest {
     }
 
     @After
-    fun tearDown(){
+    fun tearDown() {
         Dispatchers.resetMain()
     }
 }

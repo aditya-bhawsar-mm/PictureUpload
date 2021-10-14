@@ -7,5 +7,4 @@ class StorageRepository(private val storageProvider: StorageProvider) {
 
     suspend fun uploadFile(bytes: ByteArray) =
         storageProvider.uploadFile(bytes)
-
 }

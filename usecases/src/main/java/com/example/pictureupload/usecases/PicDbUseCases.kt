@@ -12,10 +12,9 @@ interface PicDbUseCase {
     suspend fun deleteAllPics()
     suspend fun getToUploadPics(): List<PicDetails>
     fun getPicPresence(path: String): Flow<Int>
-
 }
 
-class PicDbUseCaseImpl(private val picRepo: PicDbRepository): PicDbUseCase{
+class PicDbUseCaseImpl(private val picRepo: PicDbRepository) : PicDbUseCase {
     override suspend fun insertPicDetails(picDetails: PicDetails) {
         picRepo.insertPicDetails(picDetails)
     }
@@ -39,5 +38,4 @@ class PicDbUseCaseImpl(private val picRepo: PicDbRepository): PicDbUseCase{
     override fun getPicPresence(path: String): Flow<Int> {
         return picRepo.getPicPresence(path)
     }
-
 }

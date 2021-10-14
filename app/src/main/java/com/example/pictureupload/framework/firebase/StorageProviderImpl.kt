@@ -4,7 +4,6 @@ import com.example.pictureupload.data.StorageProvider
 import com.example.pictureupload.domain.StorageResult
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.lang.Exception
 import java.util.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +15,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
-class StorageProviderImpl(private val storage: FirebaseStorage): StorageProvider {
+class StorageProviderImpl(private val storage: FirebaseStorage) : StorageProvider {
 
     lateinit var ref: StorageReference
 
@@ -40,16 +39,14 @@ class StorageProviderImpl(private val storage: FirebaseStorage): StorageProvider
                     }
                 }
                 .addOnFailureListener { error ->
-                    trySend(StorageResult.Failure(error.message?:"Something Went Wrong"))
+                    trySend(StorageResult.Failure(error.message ?: "Something Went Wrong"))
                     CoroutineScope(Dispatchers.IO).launch {
                         delay(200)
                         trySend(StorageResult.Complete)
                     }
                 }
-
-
-        }catch (e: Exception){
-            trySend(StorageResult.Failure(e.message?:"Something went Wrong"))
+        } catch (e: Exception) {
+            trySend(StorageResult.Failure(e.message ?: "Something went Wrong"))
             CoroutineScope(Dispatchers.IO).launch {
                 delay(200)
                 trySend(StorageResult.Complete)

@@ -35,7 +35,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `checking call to auth use case called`() = coroutineDispatcher.runBlockingTest{
+    fun `checking call to auth use case called`() = coroutineDispatcher.runBlockingTest {
         val user = "randomEmail@reddifmail.com"
         val pass = "123456789"
         val params = AuthUseCase.Params(user, pass)
@@ -99,7 +99,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `checking what viewState returns on correct input`() = coroutineDispatcher.runBlockingTest{
+    fun `checking what viewState returns on correct input`() = coroutineDispatcher.runBlockingTest {
         val user = "random@gmail.com"
         val pass = "123456789"
 
@@ -113,7 +113,7 @@ class LoginViewModelTest {
     }
 
     @After
-    fun tearDown(){
+    fun tearDown() {
         Dispatchers.resetMain()
     }
 }

@@ -13,27 +13,26 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object UseCaseModule {
 
-    //Provides Implementation of AuthUseCase to Worker and View Models
+    // Provides Implementation of AuthUseCase to Worker and View Models
     @Provides
     internal fun providesAuthUseCase(authRepo: AuthRepository): AuthUseCase {
         return AuthUseCaseImpl(authRepo)
     }
 
-    //Provides Implementation of PicDbUseCase to Worker and View Models
+    // Provides Implementation of PicDbUseCase to Worker and View Models
     @Provides
-    internal fun providesPicDbUseCase(picDbRepository: PicDbRepository): PicDbUseCase{
+    internal fun providesPicDbUseCase(picDbRepository: PicDbRepository): PicDbUseCase {
         return PicDbUseCaseImpl(picDbRepository)
     }
 
-    //Provides Implementation of StorageUseCase to Worker and View Models
+    // Provides Implementation of StorageUseCase to Worker and View Models
     @Provides
-    internal fun providesStorageUseCase(storageRepository: StorageRepository): StorageUseCase{
+    internal fun providesStorageUseCase(storageRepository: StorageRepository): StorageUseCase {
         return StorageUseCaseImpl(storageRepository)
     }
 }

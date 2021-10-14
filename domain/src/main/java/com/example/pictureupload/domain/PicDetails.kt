@@ -1,6 +1,6 @@
 package com.example.pictureupload.domain
 
-//Domain Class for Pic Details
+// Domain Class for Pic Details
 data class PicDetails(
     var id: Int,
     var path: String,
