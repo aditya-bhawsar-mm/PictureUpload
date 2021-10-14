@@ -1,3 +1,5 @@
+import com.example.pictureupload.buildSrc.Libs
+
 plugins {
     id 'java-library'
     id 'kotlin'
@@ -5,7 +7,8 @@ plugins {
 
 dependencies {
     implementation project(':domain')
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+
+    implementation Libs.Coroutines.coroutinesCore
 }
 
 java {
