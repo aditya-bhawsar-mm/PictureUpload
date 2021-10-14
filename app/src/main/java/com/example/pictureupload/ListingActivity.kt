@@ -45,14 +45,14 @@ class ListingActivity : ComponentActivity() {
 
     override fun onStart() {
         super.onStart()
-        if(!viewModel.isUserLogged()){
+        if (!viewModel.isUserLogged()) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }
 
     @Composable
-    fun ListingScreen(){
+    fun ListingScreen() {
         PictureUploadTheme {
             Column(
                 modifier = Modifier
@@ -60,22 +60,25 @@ class ListingActivity : ComponentActivity() {
                     .fillMaxSize()
                     .padding(5.dp)
             ) {
-                
+
                 val images = assets.list("img")
-                if(images!= null){
-                    Column(modifier = Modifier
-                        .padding(5.dp)
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                    ){
-                        for (img in images){
+                if (images != null) {
+                    Column(
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .fillMaxSize()
+                            .verticalScroll(rememberScrollState())
+                    ) {
+                        for (img in images) {
                             ImageCard(image = img)
                         }
                     }
-                }else{
-                    Column(modifier = Modifier.fillMaxSize(),
+                } else {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
                         verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally)
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    )
                     {
                         Text(text = "No Images Were Found", modifier = Modifier.padding(16.dp))
                     }
@@ -85,25 +88,29 @@ class ListingActivity : ComponentActivity() {
     }
 
     @Composable
-    fun ImageCard(image: String){
+    fun ImageCard(image: String) {
 
         val inputStream = assets.open("img/$image")
         val bitmap = BitmapFactory.decodeStream(inputStream).asImageBitmap()
 
         Card(modifier = Modifier
-                .padding(10.dp)
-                .fillMaxWidth()
-                .shadow(5.dp),
+            .padding(10.dp)
+            .fillMaxWidth()
+            .shadow(5.dp),
             onClick = {
                 val intent = Intent(this, PictureActivity::class.java)
                 intent.putExtra("img", "img/$image")
                 startActivity(intent)
             }
-        ){ Image(bitmap = bitmap, contentDescription = "Image from assests",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()) }
+        ) {
+            Image(
+                bitmap = bitmap, contentDescription = "Image from assests",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
     }
-    
+
     @Preview(showBackground = true)
     @Composable
     fun DefaultPreview() {

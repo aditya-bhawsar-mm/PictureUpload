@@ -4,7 +4,6 @@ import com.example.pictureupload.data.StorageProvider
 import com.example.pictureupload.domain.StorageResult
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.util.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -13,6 +12,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 @ExperimentalCoroutinesApi
 class StorageProviderImpl(private val storage: FirebaseStorage) : StorageProvider {

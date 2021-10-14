@@ -30,5 +30,5 @@ interface PicDetailsDao {
     suspend fun deleteAllItems()
 
     @Query("SELECT * FROM pic_tb WHERE uploaded =:value")
-    suspend fun listToUploadItems(value: Boolean = false) : List<PicDetailsEntity>
+    suspend fun listToUploadItems(value: Boolean = false): List<PicDetailsEntity>
 }

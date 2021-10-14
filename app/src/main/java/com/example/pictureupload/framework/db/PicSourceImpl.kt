@@ -4,7 +4,7 @@ import com.example.pictureupload.data.PicSource
 import com.example.pictureupload.domain.PicDetails
 import kotlinx.coroutines.flow.Flow
 
-class PicSourceImpl(private val picDao: PicDetailsDao) : PicSource{
+class PicSourceImpl(private val picDao: PicDetailsDao) : PicSource {
 
     //Implementation Of Pic Dao for Insert
     override suspend fun insertPic(picDetails: PicDetails) {
@@ -35,6 +35,4 @@ class PicSourceImpl(private val picDao: PicDetailsDao) : PicSource{
     override suspend fun getToUploadPics(): List<PicDetails> {
         return picDao.listToUploadItems().map { picDetail -> picDetail.toDetails() }
     }
-
-
 }

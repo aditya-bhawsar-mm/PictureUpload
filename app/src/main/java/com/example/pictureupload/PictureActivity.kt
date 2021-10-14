@@ -37,26 +37,29 @@ class PictureActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val path = intent.getStringExtra("img")?:""
+            val path = intent.getStringExtra("img") ?: ""
             PictureScreen(path)
         }
     }
 
     @Composable
-    fun PictureScreen(img: String){
+    fun PictureScreen(img: String) {
         PictureUploadTheme {
-            Column(modifier = Modifier
-                .background(color = Color.Black)
-                .fillMaxSize(),
+            Column(
+                modifier = Modifier
+                    .background(color = Color.Black)
+                    .fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 val inputStream = assets.open(img)
                 val bitmap = BitmapFactory.decodeStream(inputStream).asImageBitmap()
 
-                Image(bitmap = bitmap, contentDescription = ""
-                    ,modifier = Modifier.fillMaxWidth()
-                    ,contentScale = ContentScale.Crop
+                Image(
+                    bitmap = bitmap,
+                    contentDescription = "",
+                    modifier = Modifier.fillMaxWidth(),
+                    contentScale = ContentScale.Crop
                 )
             }
 
@@ -66,18 +69,19 @@ class PictureActivity : ComponentActivity() {
     }
 
     @Composable
-    fun UploadButton(picPresence: State<Int>, path: String){
-        if(picPresence.value == 0){
-            Column(modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .padding(12.dp),
+    fun UploadButton(picPresence: State<Int>, path: String) {
+        if (picPresence.value == 0) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .padding(12.dp),
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Button(onClick = {
                     viewModel.insertPicDetails(
-                        PicDetails(0,path,false), this@PictureActivity
+                        PicDetails(0, path, false), this@PictureActivity
                     )
                 }) {
                     Text(text = "Upload to Cloud")

@@ -12,11 +12,11 @@ import com.example.pictureupload.domain.PicDetails
 import com.example.pictureupload.usecases.PicDbUseCase
 import com.example.pictureupload.util.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class PictureViewModel @Inject constructor(private val picDbUseCase: PicDbUseCase) :ViewModel() {
+class PictureViewModel @Inject constructor(private val picDbUseCase: PicDbUseCase) : ViewModel() {
 
     fun insertPicDetails(picDetails: PicDetails, ctx: Context) = viewModelScope.launch {
 

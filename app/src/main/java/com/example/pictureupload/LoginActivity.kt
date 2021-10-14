@@ -74,9 +74,9 @@ class LoginActivity : ComponentActivity() {
     }
 
     @ExperimentalMaterialApi
-    private fun checkUserLogin(){
-        if(viewModel.isUserLogged()){
-            val intent  = Intent(this, LandingScreenActivity::class.java)
+    private fun checkUserLogin() {
+        if (viewModel.isUserLogged()) {
+            val intent = Intent(this, LandingScreenActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -84,7 +84,7 @@ class LoginActivity : ComponentActivity() {
 
     @ExperimentalMaterialApi
     @Composable
-    fun LoginScreen(){
+    fun LoginScreen() {
         alertDialog = MaterialAlertDialogBuilder(this).create()
 
         scaffoldState = rememberScaffoldState()
@@ -92,24 +92,31 @@ class LoginActivity : ComponentActivity() {
         var passwordState by rememberSaveable { mutableStateOf("") }
         var passwordVisibility by remember { mutableStateOf(false) }
 
-        if(viewModel.viewState.hasObservers()) viewModel.viewState.removeObservers(this)
-        viewModel.viewState.observe(this){ viewState->
-            when(viewState){
-                is LoginViewState.Idle->{}
-                is LoginViewState.Loading->{
-                    if(alertDialog.isShowing){alertDialog.dismiss()}
+        if (viewModel.viewState.hasObservers()) viewModel.viewState.removeObservers(this)
+        viewModel.viewState.observe(this) { viewState ->
+            when (viewState) {
+                is LoginViewState.Idle -> {
+                }
+                is LoginViewState.Loading -> {
+                    if (alertDialog.isShowing) {
+                        alertDialog.dismiss()
+                    }
                     alertDialog.setCancelable(false)
                     alertDialog.setTitle("Processing")
                     alertDialog.setMessage("Loading your request please wait")
                     alertDialog.setIcon(R.mipmap.ic_launcher_round)
                     alertDialog.show()
                 }
-                is LoginViewState.Success->{
-                    if(alertDialog.isShowing){alertDialog.dismiss()}
+                is LoginViewState.Success -> {
+                    if (alertDialog.isShowing) {
+                        alertDialog.dismiss()
+                    }
                     checkUserLogin()
                 }
-                is LoginViewState.Error->{
-                    if(alertDialog.isShowing){alertDialog.dismiss()}
+                is LoginViewState.Error -> {
+                    if (alertDialog.isShowing) {
+                        alertDialog.dismiss()
+                    }
                     alertDialog.setCancelable(true)
                     alertDialog.setTitle("Error Received")
                     alertDialog.setMessage(viewState.msg)
@@ -122,41 +129,50 @@ class LoginActivity : ComponentActivity() {
 
         PictureUploadTheme {
             Column(modifier = Modifier.background(color = Color.White)) {
-                Box(modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(fraction = 0.4f)
-                    .clip(shape = RoundedCornerShape(bottomEnd = 80.dp))
-                    .background(color = Grey)
-                ){
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(fraction = 0.4f)
+                        .clip(shape = RoundedCornerShape(bottomEnd = 80.dp))
+                        .background(color = Grey)
+                ) {
 
-                    Image(painterResource(id = R.drawable.ic_launcher_background) , contentDescription = "App icon"
-                        ,modifier = Modifier
+                    Image(
+                        painterResource(id = R.drawable.ic_launcher_background),
+                        contentDescription = "App icon",
+                        modifier = Modifier
                             .fillMaxHeight()
                             .fillMaxWidth()
                             .padding(25.dp)
                     )
                 }
 
-                Box(modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth()
-                    .background(color = Grey)) {
-
-                    Box(modifier = Modifier
+                Box(
+                    modifier = Modifier
                         .fillMaxHeight()
-                        .clip(shape = RoundedCornerShape(topStart = 80.dp))
                         .fillMaxWidth()
-                        .background(color = Color.White)
+                        .background(color = Grey)
+                ) {
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .clip(shape = RoundedCornerShape(topStart = 80.dp))
+                            .fillMaxWidth()
+                            .background(color = Color.White)
                     ) {
 
                         Column() {
-                            Text(text = "Login with Email", modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(10.dp), textAlign = TextAlign.Center,
-                                style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold))
+                            Text(
+                                text = "Login with Email", modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(10.dp), textAlign = TextAlign.Center,
+                                style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                            )
 
-                            OutlinedTextField(value = emailState, onValueChange = {emailState = it},
-                                label = { Text(text = "Email")},
+                            OutlinedTextField(
+                                value = emailState, onValueChange = { emailState = it },
+                                label = { Text(text = "Email") },
                                 colors = TextFieldDefaults.outlinedTextFieldColors(
                                     unfocusedLabelColor = Color.Blue,
                                     unfocusedBorderColor = Color.Blue
@@ -166,17 +182,20 @@ class LoginActivity : ComponentActivity() {
                                     .padding(top = 4.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
                             )
 
-                            OutlinedTextField(value = passwordState, onValueChange = {passwordState = it},
-                                label = { Text(text = "Password")},
+                            OutlinedTextField(
+                                value = passwordState, onValueChange = { passwordState = it },
+                                label = { Text(text = "Password") },
                                 singleLine = true,
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                                visualTransformation = if(passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+                                visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
                                 trailingIcon = {
-                                    val image = if(passwordVisibility) Icons.Filled.VisibilityOff
+                                    val image = if (passwordVisibility) Icons.Filled.VisibilityOff
                                     else Icons.Filled.Visibility
 
-                                    IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
-                                        Icon(imageVector  = image, "", tint = Color.Gray)
+                                    IconButton(onClick = {
+                                        passwordVisibility = !passwordVisibility
+                                    }) {
+                                        Icon(imageVector = image, "", tint = Color.Gray)
                                     }
                                 },
                                 colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -199,9 +218,11 @@ class LoginActivity : ComponentActivity() {
                                 Text(text = "Login", style = TextStyle(fontSize = 16.sp))
                             }
 
-                            Text(text = "|OR|", modifier = Modifier
-                                .fillMaxWidth(), textAlign = TextAlign.Center,
-                                style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Black))
+                            Text(
+                                text = "|OR|", modifier = Modifier
+                                    .fillMaxWidth(), textAlign = TextAlign.Center,
+                                style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Black)
+                            )
 
                             Button(
                                 modifier = Modifier
@@ -209,7 +230,10 @@ class LoginActivity : ComponentActivity() {
                                     .fillMaxWidth()
                                     .clip(shape = RoundedCornerShape(20.dp)),
                                 onClick = {}) {
-                                Text(text = "Login with Social", style = TextStyle(fontSize = 16.sp))
+                                Text(
+                                    text = "Login with Social",
+                                    style = TextStyle(fontSize = 16.sp)
+                                )
                             }
 
                             Button(
@@ -218,7 +242,8 @@ class LoginActivity : ComponentActivity() {
                                     .fillMaxWidth()
                                     .clip(shape = RoundedCornerShape(20.dp)),
                                 onClick = {
-                                    val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+                                    val intent =
+                                        Intent(this@LoginActivity, RegisterActivity::class.java)
                                     startActivity(intent)
                                 }) {
                                 Text(text = "Register", style = TextStyle(fontSize = 16.sp))
