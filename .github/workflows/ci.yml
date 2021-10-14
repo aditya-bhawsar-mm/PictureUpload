@@ -4,17 +4,7 @@ on: pull_request
 
 jobs:
 
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Run Lint
-        run: ./gradlew lint
-
-
   ktLint:
-    needs: [lint]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1

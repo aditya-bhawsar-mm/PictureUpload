@@ -3,7 +3,6 @@ package com.example.pictureupload.usecases
 import com.example.pictureupload.data.AuthRepository
 import com.example.pictureupload.domain.AuthResult
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 
 interface AuthUseCase {
     data class Params(

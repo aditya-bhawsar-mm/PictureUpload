@@ -13,13 +13,9 @@ import com.example.pictureupload.usecases.StorageUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import java.io.ByteArrayOutputStream
-import java.lang.Exception
 import java.util.concurrent.CountDownLatch
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.takeWhile
-import kotlinx.coroutines.withContext
 
 @HiltWorker
 class UploadWorker @AssistedInject constructor(

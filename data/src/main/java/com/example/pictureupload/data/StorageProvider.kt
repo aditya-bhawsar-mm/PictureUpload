@@ -7,5 +7,4 @@ interface StorageProvider {
 
     fun createReferenceToUser(uid: String)
     suspend fun uploadFile(bytes: ByteArray): Flow<StorageResult>
-
 }
