@@ -34,6 +34,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Setup Jdk
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
       - name: Test
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -47,7 +52,10 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: ./gradlew connectedAndroidTest
+          target: google_apis
+          arch: x86
+          profile: Nexus 6
+          script: ./gradlew connectedCheck --stacktrace
 
 
   build_and_assemble:
