@@ -21,21 +21,27 @@ private const val TAG = "PhotosScreen"
 
 @Composable
 fun PhotosScreen(
-  modifier: Modifier = Modifier,
-  topBarHeight: Dp,
-  changeTopBarColor: (changeColor: Boolean) -> Unit
+    modifier: Modifier = Modifier,
+    topBarHeight: Dp,
+    changeTopBarColor: (changeColor: Boolean) -> Unit
 ) {
-  val listState = rememberLazyListState()
-  Box(modifier = modifier.fillMaxSize().background(MaterialTheme.colors.surface), contentAlignment = Alignment.Center) {
-    LazyColumn(state = listState, contentPadding = PaddingValues(top = topBarHeight)) {
-      items(100) { index ->
-        Text(
-          "I'm item $index", modifier = Modifier
-          .fillMaxWidth()
-          .padding(16.dp)
-        )
-      }
+    val listState = rememberLazyListState()
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colors.surface),
+        contentAlignment = Alignment.Center
+    ) {
+        LazyColumn(state = listState, contentPadding = PaddingValues(top = topBarHeight)) {
+            items(100) { index ->
+                Text(
+                    "I'm item $index",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                )
+            }
+        }
+        changeTopBarColor(listState.isFirstItemVisible())
     }
-    changeTopBarColor(listState.isFirstItemVisible())
-  }
 }

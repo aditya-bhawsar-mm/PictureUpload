@@ -50,105 +50,124 @@ private const val TAG = "LandingScreen"
 @ExperimentalCoilApi
 @Composable
 fun LandingScreen(
-  modifier: Modifier = Modifier,
-  systemUiController: SystemUiController
+    modifier: Modifier = Modifier,
+    systemUiController: SystemUiController
 ) {
-  val ctx = LocalContext.current
-  val toolbarHeight = 64.dp
-  val toolbarHeightPx = with(LocalDensity.current) { toolbarHeight.roundToPx().toFloat() }
-  val toolbarOffsetHeightPx = remember { mutableStateOf(0f) }
+    val ctx = LocalContext.current
+    val toolbarHeight = 64.dp
+    val toolbarHeightPx = with(LocalDensity.current) { toolbarHeight.roundToPx().toFloat() }
+    val toolbarOffsetHeightPx = remember { mutableStateOf(0f) }
 
-  val themeTypography = MaterialTheme.typography
-  val themeColors = MaterialTheme.colors
+    val themeTypography = MaterialTheme.typography
+    val themeColors = MaterialTheme.colors
 
-  var topBarColorState by remember { mutableStateOf(themeColors.surface) }
-  val topBarColor by animateColorAsState(targetValue = topBarColorState, tween(durationMillis = 300))
-
-  val topBarBackgroundColor = themeColors.topBarBackgroundColor
-
-  var topBarTitleSizeState by remember { mutableStateOf(themeTypography.h1.fontSize.value) }
-  val topBarTitleSize by animateFloatAsState(targetValue = topBarTitleSizeState, tween(durationMillis = 300))
-
-  val landingScreenViewModel: LandingScreenViewModel = hiltViewModel()
-  val topBarImageState = landingScreenViewModel.imageState.collectAsState().value
-
-  val topAppBarModifier = when (topBarImageState) {
-    is ImageUploadState.Empty -> {
-      topBarTitleSizeState = themeTypography.h1.fontSize.value
-      modifier
-        .background(topBarColor)
-        .fillMaxSize()
-    }
-    else -> {
-      topBarTitleSizeState = themeTypography.h1.fontSize.value - 4
-      modifier
-        .background(topBarColor)
-        .fillMaxWidth()
-    }
-  }
-
-  val nestedScrollConnection = remember {
-    object : NestedScrollConnection {
-      override fun onPreScroll(
-        available: Offset,
-        source: NestedScrollSource
-      ): Offset {
-        val delta = available.y
-        val newOffset = toolbarOffsetHeightPx.value + delta
-        toolbarOffsetHeightPx.value = newOffset.coerceIn(-toolbarHeightPx, 0f)
-        return Offset.Zero
-      }
-    }
-  }
-  Box(
-    modifier
-      .fillMaxSize()
-      .nestedScroll(nestedScrollConnection)
-  ) {
-
-    BottomNavigationBar(
-      modifier = modifier,
-      topBarHeight = toolbarHeight,
-      changeTopBarColor = { changeColor: Boolean ->
-        topBarColorState = if (changeColor) themeColors.surface else topBarBackgroundColor
-        systemUiController.setStatusBarColor(color = topBarColor)
-      }
+    var topBarColorState by remember { mutableStateOf(themeColors.surface) }
+    val topBarColor by animateColorAsState(
+        targetValue = topBarColorState,
+        tween(durationMillis = 300)
     )
 
-    TopAppBar(
-      modifier = modifier
-        .height(toolbarHeight)
-        .offset { IntOffset(x = 0, y = toolbarOffsetHeightPx.value.roundToInt()) },
-      backgroundColor = topBarColor,
-      elevation = 0.dp
-    ) {
-      Box(contentAlignment = Alignment.CenterEnd) {
-        Column {
-          Row(
-            modifier = topAppBarModifier,
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-          ) {
-            Text(text = "Google", style = MaterialTheme.typography.h1, color = themeColors.onSurface, fontSize = topBarTitleSize.sp)
-            Text(text = " Photos", style = MaterialTheme.typography.h6, color = themeColors.onSurface, fontSize = topBarTitleSize.sp)
-          }
-          AnimatedVisibility(
-            visible = topBarImageState !is ImageUploadState.Empty,
-            enter = fadeIn(),
-            exit = fadeOut()
-          ) {
-            Row(
-              modifier = topAppBarModifier,
-              verticalAlignment = Alignment.CenterVertically,
-              horizontalArrangement = Arrangement.Center
-            ) {
-              Text(text = ctx.getString(topBarImageState.msg), style = MaterialTheme.typography.subtitle2, color = themeColors.onSurface)
-            }
-          }
+    val topBarBackgroundColor = themeColors.topBarBackgroundColor
+
+    var topBarTitleSizeState by remember { mutableStateOf(themeTypography.h1.fontSize.value) }
+    val topBarTitleSize by animateFloatAsState(
+        targetValue = topBarTitleSizeState,
+        tween(durationMillis = 300)
+    )
+
+    val landingScreenViewModel: LandingScreenViewModel = hiltViewModel()
+    val topBarImageState = landingScreenViewModel.imageState.collectAsState().value
+
+    val topAppBarModifier = when (topBarImageState) {
+        is ImageUploadState.Empty -> {
+            topBarTitleSizeState = themeTypography.h1.fontSize.value
+            modifier
+                .background(topBarColor)
+                .fillMaxSize()
         }
-        TopBarProfileButton()
-      }
+        else -> {
+            topBarTitleSizeState = themeTypography.h1.fontSize.value - 4
+            modifier
+                .background(topBarColor)
+                .fillMaxWidth()
+        }
     }
 
-  }
+    val nestedScrollConnection = remember {
+        object : NestedScrollConnection {
+            override fun onPreScroll(
+                available: Offset,
+                source: NestedScrollSource
+            ): Offset {
+                val delta = available.y
+                val newOffset = toolbarOffsetHeightPx.value + delta
+                toolbarOffsetHeightPx.value = newOffset.coerceIn(-toolbarHeightPx, 0f)
+                return Offset.Zero
+            }
+        }
+    }
+    Box(
+        modifier
+            .fillMaxSize()
+            .nestedScroll(nestedScrollConnection)
+    ) {
+
+        BottomNavigationBar(
+            modifier = modifier,
+            topBarHeight = toolbarHeight,
+            changeTopBarColor = { changeColor: Boolean ->
+                topBarColorState = if (changeColor) themeColors.surface else topBarBackgroundColor
+                systemUiController.setStatusBarColor(color = topBarColor)
+            }
+        )
+
+        TopAppBar(
+            modifier = modifier
+                .height(toolbarHeight)
+                .offset { IntOffset(x = 0, y = toolbarOffsetHeightPx.value.roundToInt()) },
+            backgroundColor = topBarColor,
+            elevation = 0.dp
+        ) {
+            Box(contentAlignment = Alignment.CenterEnd) {
+                Column {
+                    Row(
+                        modifier = topAppBarModifier,
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = "Google",
+                            style = MaterialTheme.typography.h1,
+                            color = themeColors.onSurface,
+                            fontSize = topBarTitleSize.sp
+                        )
+                        Text(
+                            text = " Photos",
+                            style = MaterialTheme.typography.h6,
+                            color = themeColors.onSurface,
+                            fontSize = topBarTitleSize.sp
+                        )
+                    }
+                    AnimatedVisibility(
+                        visible = topBarImageState !is ImageUploadState.Empty,
+                        enter = fadeIn(),
+                        exit = fadeOut()
+                    ) {
+                        Row(
+                            modifier = topAppBarModifier,
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Text(
+                                text = ctx.getString(topBarImageState.msg),
+                                style = MaterialTheme.typography.subtitle2,
+                                color = themeColors.onSurface
+                            )
+                        }
+                    }
+                }
+                TopBarProfileButton()
+            }
+        }
+    }
 }

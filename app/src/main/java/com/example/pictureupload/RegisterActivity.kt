@@ -67,9 +67,8 @@ class RegisterActivity : ComponentActivity() {
         }
     }
 
-
     @Composable
-    fun RegisterScreen(){
+    fun RegisterScreen() {
 
         alertDialog = MaterialAlertDialogBuilder(this).create()
 
@@ -80,21 +79,25 @@ class RegisterActivity : ComponentActivity() {
         var passwordConfirmVisibility by remember { mutableStateOf(false) }
         var passwordConfirmState by rememberSaveable { mutableStateOf("") }
 
-
-        if(viewModel.viewState.hasObservers()) viewModel.viewState.removeObservers(this)
-        viewModel.viewState.observe(this){ viewState->
-            when(viewState){
-                is RegisterViewState.Idle->{}
-                is RegisterViewState.Loading->{
-                    if(alertDialog.isShowing){alertDialog.dismiss()}
+        if (viewModel.viewState.hasObservers()) viewModel.viewState.removeObservers(this)
+        viewModel.viewState.observe(this) { viewState ->
+            when (viewState) {
+                is RegisterViewState.Idle -> {
+                }
+                is RegisterViewState.Loading -> {
+                    if (alertDialog.isShowing) {
+                        alertDialog.dismiss()
+                    }
                     alertDialog.setCancelable(false)
                     alertDialog.setTitle("Processing")
                     alertDialog.setMessage("Loading your request please wait")
                     alertDialog.setIcon(R.mipmap.ic_launcher_round)
                     alertDialog.show()
                 }
-                is RegisterViewState.Success->{
-                    if(alertDialog.isShowing){alertDialog.dismiss()}
+                is RegisterViewState.Success -> {
+                    if (alertDialog.isShowing) {
+                        alertDialog.dismiss()
+                    }
                     Toast.makeText(
                         this,
                         "Registered Successfully!!!",
@@ -102,8 +105,10 @@ class RegisterActivity : ComponentActivity() {
                     ).show()
                     finish()
                 }
-                is RegisterViewState.Error->{
-                    if(alertDialog.isShowing){alertDialog.dismiss()}
+                is RegisterViewState.Error -> {
+                    if (alertDialog.isShowing) {
+                        alertDialog.dismiss()
+                    }
                     alertDialog.setCancelable(true)
                     alertDialog.setTitle("Error Received")
                     alertDialog.setMessage(viewState.msg)
@@ -120,16 +125,16 @@ class RegisterActivity : ComponentActivity() {
                 scaffoldState = scaffoldState
             ) {
 
-                Column(modifier = Modifier.background(color = Color.White))
-                {
-                    Box(modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(fraction = 0.4f)
-                        .clip(shape = RoundedCornerShape(bottomEnd = 80.dp))
-                        .background(color = Color.White)
+                Column(modifier = Modifier.background(color = Color.White)) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(fraction = 0.4f)
+                            .clip(shape = RoundedCornerShape(bottomEnd = 80.dp))
+                            .background(color = Color.White)
                     ) {
                         Image(
-                            painterResource(id = R.drawable.ic_launcher_background) ,
+                            painterResource(id = R.drawable.ic_launcher_background),
                             contentDescription = "App icon",
                             modifier = Modifier
                                 .fillMaxHeight()
@@ -138,27 +143,36 @@ class RegisterActivity : ComponentActivity() {
                         )
                     }
 
-                    Box(modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxWidth()
-                        .background(color = Color.White)) {
-
-                        Box(modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(shape = RoundedCornerShape(topStart = 80.dp))
+                    Box(
+                        modifier = Modifier
                             .fillMaxHeight()
-                            .background(color = Grey)) {
+                            .fillMaxWidth()
+                            .background(color = Color.White)
+                    ) {
+
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(shape = RoundedCornerShape(topStart = 80.dp))
+                                .fillMaxHeight()
+                                .background(color = Grey)
+                        ) {
 
                             Column {
-                                Text(text = "Register with email", textAlign = TextAlign.Center,
+                                Text(
+                                    text = "Register with email", textAlign = TextAlign.Center,
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(10.dp),
-                                    style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                                    style = TextStyle(
+                                        fontSize = 20.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
                                 )
 
-                                OutlinedTextField(value = emailState, onValueChange = { emailState = it },
-                                    label = { Text(text = "Email")},
+                                OutlinedTextField(
+                                    value = emailState, onValueChange = { emailState = it },
+                                    label = { Text(text = "Email") },
                                     singleLine = true,
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -174,9 +188,9 @@ class RegisterActivity : ComponentActivity() {
                                     )
                                 )
                                 OutlinedTextField(
-                                    value =passwordState,
-                                    onValueChange = {passwordState = it},
-                                    label = { Text(text = "Password")},
+                                    value = passwordState,
+                                    onValueChange = { passwordState = it },
+                                    label = { Text(text = "Password") },
                                     visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
                                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                                     trailingIcon = {
@@ -184,10 +198,10 @@ class RegisterActivity : ComponentActivity() {
                                             Icons.Filled.VisibilityOff
                                         else Icons.Filled.Visibility
 
-                                        IconButton(onClick = {
-                                            passwordVisibility= !passwordVisibility
-                                        }) {
-                                            Icon(imageVector  = image, "", tint = Color.Gray)
+                                        IconButton(
+                                            onClick = { passwordVisibility = !passwordVisibility }
+                                        ) {
+                                            Icon(imageVector = image, "", tint = Color.Gray)
                                         }
                                     },
                                     singleLine = true,
@@ -195,11 +209,15 @@ class RegisterActivity : ComponentActivity() {
                                         .fillMaxWidth()
                                         .padding(start = 16.dp, end = 16.dp, bottom = 4.dp),
 
-                                    colors = TextFieldDefaults.outlinedTextFieldColors(unfocusedBorderColor = Color.Blue,unfocusedLabelColor = Color.Blue
+                                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                                        unfocusedBorderColor = Color.Blue,
+                                        unfocusedLabelColor = Color.Blue
                                     )
                                 )
-                                OutlinedTextField(value = passwordConfirmState, onValueChange = {passwordConfirmState = it},
-                                    label = { Text(text = "Confirm Password")},
+                                OutlinedTextField(
+                                    value = passwordConfirmState,
+                                    onValueChange = { passwordConfirmState = it },
+                                    label = { Text(text = "Confirm Password") },
                                     singleLine = true,
                                     visualTransformation = if (passwordConfirmVisibility) VisualTransformation.None else PasswordVisualTransformation(),
                                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -208,17 +226,20 @@ class RegisterActivity : ComponentActivity() {
                                             Icons.Filled.VisibilityOff
                                         else Icons.Filled.Visibility
 
-                                        IconButton(onClick = {
-                                            passwordConfirmVisibility= !passwordConfirmVisibility
-                                        }) {
-                                            Icon(imageVector  = image, "",tint = Color.Gray)
+                                        IconButton(
+                                            onClick = {
+                                                passwordConfirmVisibility = !passwordConfirmVisibility
+                                            }
+                                        ) {
+                                            Icon(imageVector = image, "", tint = Color.Gray)
                                         }
                                     },
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .padding(start = 16.dp, end = 16.dp, bottom = 4.dp),colors = TextFieldDefaults.outlinedTextFieldColors(
-                                        unfocusedBorderColor = Color.Blue
-                                        ,unfocusedLabelColor = Color.Blue
+                                        .padding(start = 16.dp, end = 16.dp, bottom = 4.dp),
+                                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                                        unfocusedBorderColor = Color.Blue,
+                                        unfocusedLabelColor = Color.Blue
                                     )
                                 )
                                 Button(
@@ -226,7 +247,14 @@ class RegisterActivity : ComponentActivity() {
                                         .padding(24.dp)
                                         .fillMaxWidth()
                                         .clip(shape = RoundedCornerShape(20.dp)),
-                                    onClick = { viewModel.validateInputAndRegister(emailState, passwordState, passwordConfirmState) }) {
+                                    onClick = {
+                                        viewModel.validateInputAndRegister(
+                                            emailState,
+                                            passwordState,
+                                            passwordConfirmState
+                                        )
+                                    }
+                                ) {
                                     Text(text = "Register", style = TextStyle(fontSize = 18.sp))
                                 }
                             }
@@ -242,7 +270,4 @@ class RegisterActivity : ComponentActivity() {
     fun DefaultPreview() {
         RegisterScreen()
     }
-
-
 }
-

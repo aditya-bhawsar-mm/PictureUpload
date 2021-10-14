@@ -92,10 +92,12 @@ dependencies {
     kapt Libs.Hilt.compiler
     implementation Libs.Hilt.work
     testImplementation Libs.Hilt.testing
+    implementation Libs.Hilt.navigation
 
     //Navigation Component
     implementation Libs.Navigation.fragment
     implementation Libs.Navigation.ui
+    implementation Libs.Navigation.navigation
 
     //Firebase
     implementation platform(Libs.Firebase.firebasePlatform)
