@@ -1,7 +1,6 @@
 package com.example.pictureupload.ui.theme
 
 import androidx.compose.material.Colors
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
@@ -39,9 +38,6 @@ val BottomNavBarLight = Color(0xFFF1F5FB)
 
 val SurfaceColorDark = Color(0xFF1f1f1f)
 val SurfaceColorLight = Color(0xFFFFFFFF)
-
-val Blue = Color(0xff004868)
-val LandingScreenNavBarColor = Color(0xFF5A5A5A)
 
 val Colors.bottomNavSelectedColor: Color
     @Composable
