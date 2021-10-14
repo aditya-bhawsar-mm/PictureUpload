@@ -7,7 +7,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListingViewModel @Inject constructor(private val authUseCases: AuthUseCase) : ViewModel() {
-
     fun isUserLogged() = authUseCases.isUserLogged()
-
 }

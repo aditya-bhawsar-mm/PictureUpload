@@ -4,6 +4,7 @@ object Versions {
     const val accompanistVer = "0.19.0"
     const val coilVer = "1.4.0"
     const val agpVersion = "7.0.2"
+    const val dexMockitoVer = "2.28.1"
     const val hiltVersion = "2.36"
     const val hiltNavVersion = "1.0.0-alpha03"
     const val hiltCompilerVersion = "1.0.0"
@@ -128,6 +129,10 @@ object Libs {
 
     object Coil {
         const val coil = "io.coil-kt:coil-compose:${Versions.coilVer}"
+    }
+
+    object DexMaker {
+        const val mockito = "com.linkedin.dexmaker:dexmaker-mockito:${Versions.dexMockitoVer}"
     }
 
     object Compose {

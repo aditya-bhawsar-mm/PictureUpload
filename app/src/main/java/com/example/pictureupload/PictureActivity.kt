@@ -79,14 +79,15 @@ class PictureActivity : ComponentActivity() {
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Button(onClick = {
-                    viewModel.insertPicDetails(
-                        PicDetails(0, path, false), this@PictureActivity
-                    )
-                }) {
+                Button(
+                    onClick = {
+                        viewModel.insertPicDetails(
+                            PicDetails(0, path, false), this@PictureActivity
+                        )
+                    }
+                ) {
                     Text(text = "Upload to Cloud")
                 }
-
             }
         }
     }

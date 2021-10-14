@@ -78,8 +78,7 @@ class ListingActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
-                    )
-                    {
+                    ) {
                         Text(text = "No Images Were Found", modifier = Modifier.padding(16.dp))
                     }
                 }
@@ -93,10 +92,11 @@ class ListingActivity : ComponentActivity() {
         val inputStream = assets.open("img/$image")
         val bitmap = BitmapFactory.decodeStream(inputStream).asImageBitmap()
 
-        Card(modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth()
-            .shadow(5.dp),
+        Card(
+            modifier = Modifier
+                .padding(10.dp)
+                .fillMaxWidth()
+                .shadow(5.dp),
             onClick = {
                 val intent = Intent(this, PictureActivity::class.java)
                 intent.putExtra("img", "img/$image")
@@ -116,6 +116,4 @@ class ListingActivity : ComponentActivity() {
     fun DefaultPreview() {
         ListingScreen()
     }
-
 }
-

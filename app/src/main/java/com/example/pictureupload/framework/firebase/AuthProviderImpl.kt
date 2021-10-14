@@ -38,7 +38,6 @@ class AuthProviderImpl(private val auth: FirebaseAuth) : AuthProvider {
             awaitClose {}
         }
 
-
     override fun signUpWithMailAndPassword(mail: String, password: String): Flow<AuthResult> =
         callbackFlow {
 

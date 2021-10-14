@@ -75,7 +75,6 @@ class UploadWorker @AssistedInject constructor(
         }
 
         println("Result $result")
-
         return result
     }
 }

@@ -35,5 +35,4 @@ class PictureViewModel @Inject constructor(private val picDbUseCase: PicDbUseCas
     }
 
     fun getPathPresence(path: String) = picDbUseCase.getPicPresence(path = path)
-
 }

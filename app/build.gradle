@@ -20,7 +20,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.dexopener.DexOpeningTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -80,6 +81,8 @@ dependencies {
     implementation Libs.Compose.iconsExtended
     implementation Libs.Compose.activityCompose
 
+
+
     //Room DB
     implementation Libs.Room.roomRuntime
     kapt Libs.Room.roomCompiler
@@ -108,6 +111,13 @@ dependencies {
     //WorkManager
     implementation Libs.WorkManager.workManager
 
+    //Insetter for inset management
+    implementation Libs.Accompanist.uiController
+    implementation Libs.Accompanist.inset
+
+    //Coil library for image loading
+    implementation Libs.Coil.coil
+
     testImplementation Libs.Mockk.mockk
     testImplementation Libs.JUnit.jUnit
     testImplementation Libs.AndroidX.coreTesting
@@ -116,12 +126,6 @@ dependencies {
     androidTestImplementation Libs.Mockk.mockkAndroid
     androidTestImplementation Libs.Compose.composeUiJunit
     androidTestImplementation Libs.Espresso.espressoCore
-
-    //Insetter for inset management
-    implementation Libs.Accompanist.uiController
-    implementation Libs.Accompanist.inset
-
-    //Coil library for image loading
-    implementation Libs.Coil.coil
-
+    androidTestImplementation Libs.Espresso.espressoCore
+    androidTestImplementation Libs.DexMaker.mockito
 }

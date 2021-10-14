@@ -11,15 +11,15 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PicDetailsDao {
 
-    //Pic Details Insert Method Implemented by the @Dao annotation
+    // Pic Details Insert Method Implemented by the @Dao annotation
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPicDetails(picDetailsEntity: PicDetailsEntity)
 
-    //Pic Details Update Method Implemented by the @Dao annotation
+    // Pic Details Update Method Implemented by the @Dao annotation
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updatePicDetails(picDetailsEntity: PicDetailsEntity)
 
-    //Pic Details Delete Method Implemented by the @Dao annotation
+    // Pic Details Delete Method Implemented by the @Dao annotation
     @Delete
     suspend fun deletePicDetails(picDetailsEntity: PicDetailsEntity)
 
