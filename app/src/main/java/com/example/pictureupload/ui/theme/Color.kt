@@ -17,15 +17,10 @@ val DarkModeSurfaceColor = Color(0xFF1F1F1F)
 val LightModeTextColor = Color(0xFF5F6267)
 
 val Blue = Color(0xff004868)
-val LandingScreenNavBarColor = Color(0xFF5A5A5A)
 val LandingScreenStatusBarColor = Color(0xFF565656)
 
 val TopAppBarBackgroundLight = Color(0xFFF1F4FB)
 val TopAppBarBackgroundDark = Color(0xFF2D2F32)
-
-val Colors.topBarBackgroundColor: Color
-  @Composable
-  get() = if (isLight) TopAppBarBackgroundLight else TopAppBarBackgroundDark
 
 val BottomNavDarkSelect = Color(0xFF004A77)
 val BottomNavLightSelect = Color(0xFFC2E7FF)
@@ -41,16 +36,20 @@ val SurfaceColorLight = Color(0xFFFFFFFF)
 
 val Colors.bottomNavSelectedColor: Color
     @Composable
-    get() = if(isLight) BottomNavLightSelect else BottomNavDarkSelect
+    get() = if (isLight) BottomNavLightSelect else BottomNavDarkSelect
 
 val Colors.bottomNavIconColor: Color
     @Composable
-    get() = if(isLight) BottomNavLightIcon else BottomNavDarkIcon
+    get() = if (isLight) BottomNavLightIcon else BottomNavDarkIcon
 
 val Colors.bottomNavBarColor: Color
     @Composable
-    get() = if(isLight) BottomNavBarLight else BottomNavBarDark
+    get() = if (isLight) BottomNavBarLight else BottomNavBarDark
 
 val Colors.backgroundSurfaceColor: Color
     @Composable
-    get() = if(isLight) SurfaceColorLight else SurfaceColorDark
+    get() = if (isLight) SurfaceColorLight else SurfaceColorDark
+
+val Colors.topBarBackgroundColor: Color
+    @Composable
+    get() = if (isLight) TopAppBarBackgroundLight else TopAppBarBackgroundDark
