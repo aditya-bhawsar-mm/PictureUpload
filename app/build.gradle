@@ -1,4 +1,5 @@
 import com.example.pictureupload.buildSrc.Libs
+import com.example.pictureupload.buildSrc.Versions
 
 plugins {
     id 'com.android.application'
@@ -47,7 +48,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion Libs.Compose.composeVer
+        kotlinCompilerExtensionVersion Versions.composeVer
     }
 
     packagingOptions {
@@ -98,9 +99,9 @@ dependencies {
 
     //Firebase
     implementation platform(Libs.Firebase.firebasePlatform)
-    implementation Libs.Firebase.firebaseAnalytics
-    implementation Libs.Firebase.firebaseAuth
-    implementation Libs.Firebase.firebaseStorage
+    implementation Libs.Firebase.analytics
+    implementation Libs.Firebase.auth
+    implementation Libs.Firebase.storage
 
     //WorkManager
     implementation Libs.WorkManager.workManager
