@@ -1,5 +1,5 @@
-import com.example.pictureupload.buildSrc.Libs
-import com.example.pictureupload.buildSrc.Versions
+import com.mutualmobile.photosclone.buildSrc.Libs
+import com.mutualmobile.photosclone.buildSrc.Versions
 
 plugins {
     id 'com.android.application'

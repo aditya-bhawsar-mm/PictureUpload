@@ -1,4 +1,4 @@
-import com.example.pictureupload.buildSrc.Libs
+import com.mutualmobile.photosclone.buildSrc.Libs
 
 plugins {
     id 'java-library'
