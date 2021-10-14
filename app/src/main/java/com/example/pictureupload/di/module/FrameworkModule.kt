@@ -21,23 +21,23 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object FrameworkModule {
 
-    //Provides Auth Provider implementation to Repository
+    // Provides Auth Provider implementation to Repository
     @Provides
     @Singleton
     internal fun providesAuthProvider(): AuthProvider {
         return AuthProviderImpl(FirebaseAuth.getInstance())
     }
 
-    //Provides Pic Source Implementation to the Repository
+    // Provides Pic Source Implementation to the Repository
     @Provides
     @Singleton
-    internal fun providesPicSource(picDetailsDao: PicDetailsDao): PicSource{
+    internal fun providesPicSource(picDetailsDao: PicDetailsDao): PicSource {
         return PicSourceImpl(picDetailsDao)
     }
 
     @Provides
     @Singleton
-    internal fun providesStorageProvider(): StorageProvider{
+    internal fun providesStorageProvider(): StorageProvider {
         return StorageProviderImpl(FirebaseStorage.getInstance())
     }
 }

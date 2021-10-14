@@ -14,6 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PictureUpload">
         <activity
+            android:name="com.example.pictureupload.ui.screens.landing_screen.LandingScreenActivity"
+            android:exported="true"
+            android:label="@string/title_activity_landing_screen"
+            android:theme="@style/Theme.PictureUpload.NoActionBar" />
+        <activity
             android:name=".PictureActivity"
             android:exported="true"
             android:label="@string/title_activity_picture"

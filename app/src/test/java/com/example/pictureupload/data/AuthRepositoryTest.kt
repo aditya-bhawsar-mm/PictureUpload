@@ -32,7 +32,7 @@ class AuthRepositoryTest {
     }
 
     @Test
-    fun `check the call from authRepo to authProvider for signUp`(){
+    fun `check the call from authRepo to authProvider for signUp`() {
         val user = "android@gmail.com"
         val pass = "1234567890"
 

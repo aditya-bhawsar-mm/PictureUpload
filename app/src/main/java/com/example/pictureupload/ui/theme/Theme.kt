@@ -7,20 +7,19 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
+    primary = Blue,
     primaryVariant = Purple700,
     secondary = Teal200,
-    background = Teal200,
-    surface = Purple200
+    surface = DarkModeSurfaceColor,
+    onSurface = White
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
+    primary = Blue,
     primaryVariant = Purple700,
     secondary = Teal200,
-    background = Teal200,
-    surface = Purple200,
-    onPrimary = Purple700
+    surface = White,
+    onSurface = LightModeTextColor
     /* Other default colors to override
     background = Color.White,
     surface = Color.White,
@@ -34,7 +33,7 @@ private val LightColorPalette = lightColors(
 @Composable
 fun PictureUploadTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {
         DarkColorPalette

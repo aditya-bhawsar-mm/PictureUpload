@@ -2,7 +2,6 @@ package com.example.pictureupload.data
 
 import com.example.pictureupload.domain.AuthResult
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 
 class AuthRepository(private val authProvider: AuthProvider) {
 

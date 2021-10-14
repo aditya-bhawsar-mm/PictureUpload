@@ -45,7 +45,7 @@ class AuthProviderImplTest {
     }
 
     @Test
-    fun `check flow returned from the method signUp`() = coroutineDispatcher.runBlockingTest{
+    fun `check flow returned from the method signUp`() = coroutineDispatcher.runBlockingTest {
         val user = "random@gmail.com"
         val pass = "123456789"
 

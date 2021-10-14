@@ -18,7 +18,6 @@ import androidx.compose.material.Button
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
@@ -36,7 +35,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -47,6 +45,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.pictureupload.ui.screens.landing_screen.LandingScreenActivity
 import com.example.pictureupload.ui.theme.Grey
 import com.example.pictureupload.ui.theme.PictureUploadTheme
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -77,7 +76,7 @@ class LoginActivity : ComponentActivity() {
     @ExperimentalMaterialApi
     private fun checkUserLogin(){
         if(viewModel.isUserLogged()){
-            val intent  = Intent(this, ListingActivity::class.java)
+            val intent  = Intent(this, LandingScreenActivity::class.java)
             startActivity(intent)
             finish()
         }
